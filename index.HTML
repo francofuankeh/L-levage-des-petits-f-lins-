@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -18,6 +17,8 @@
       --accent-amber-soft: #FEF3C7;
       --accent-sage: #2E5A44;
       --accent-sage-soft: #DCFCE7;
+      --accent-rose: #E11D48;
+      --accent-rose-soft: #FFE4E6;
       --border-warm: #E6DFD5;
       --radius-lg: 18px;
       --radius-md: 12px;
@@ -47,13 +48,12 @@
     h1, h2, h3, h4, .font-serif {
       font-family: 'Cormorant Garamond', Georgia, serif;
       margin: 0;
-      color: var(--ink-dark);
+      color: inherit;
     }
 
     p { margin: 0; }
 
     .hidden { display: none !important; }
-    .pointer-events-none { pointer-events: none !important; }
 
     /* Container */
     .container {
@@ -166,6 +166,15 @@
     .btn-amber { background: var(--accent-amber); color: #FFFFFF; border-color: var(--accent-amber); }
     .btn-amber:hover { background: #7E491B; }
 
+    .btn-rose {
+      background: linear-gradient(135deg, #E11D48, #BE123C);
+      color: #FFFFFF;
+      border-color: #FB7185;
+    }
+    .btn-rose:hover {
+      background: linear-gradient(135deg, #F43F5E, #E11D48);
+    }
+
     .btn-sm { padding: 7px 12px; font-size: 0.8rem; border-radius: var(--radius-sm); }
     .btn-lg { padding: 13px 22px; font-size: 0.98rem; }
     .btn-full { width: 100%; }
@@ -181,7 +190,7 @@
     .drawer-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.45);
+      background: rgba(0, 0, 0, 0.48);
       z-index: 50;
     }
 
@@ -230,6 +239,86 @@
       padding: 24px;
     }
     @media (min-width: 640px) { .card { padding: 32px; } }
+
+    /* Dark + Rose/Pink Decorated Apply Card */
+    .apply-dark-card {
+      position: relative;
+      background: linear-gradient(160deg, #0B1120 0%, #111827 55%, #1E1322 100%);
+      color: #F8FAFC;
+      border: 1px solid rgba(251, 113, 133, 0.42);
+      border-radius: 22px;
+      padding: 26px;
+      box-shadow: 0 22px 50px rgba(11, 17, 32, 0.35), inset 0 1px 0 rgba(253, 164, 175, 0.18);
+      overflow: hidden;
+    }
+    @media (min-width: 640px) { .apply-dark-card { padding: 36px; } }
+
+    .apply-dark-card::before {
+      content: "";
+      position: absolute;
+      top: -90px;
+      right: -90px;
+      width: 240px;
+      height: 240px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(244, 63, 94, 0.24) 0%, rgba(244, 63, 94, 0) 70%);
+      pointer-events: none;
+    }
+
+    .apply-dark-card h2,
+    .apply-dark-card h3 {
+      color: #FFF1F2;
+    }
+
+    .apply-muted {
+      color: #CBD5E1;
+    }
+
+    .apply-selected-box {
+      position: relative;
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid rgba(251, 113, 133, 0.45);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+    @media (min-width: 640px) {
+      .apply-selected-box { flex-direction: row; align-items: center; justify-content: space-between; }
+    }
+
+    .apply-dark-card .field label {
+      color: #FBCFE8;
+    }
+
+    .apply-dark-card .field input,
+    .apply-dark-card .field select,
+    .apply-dark-card .field textarea {
+      background: rgba(15, 23, 42, 0.9);
+      color: #F8FAFC;
+      border: 1px solid rgba(244, 114, 182, 0.35);
+    }
+
+    .apply-dark-card .field input::placeholder,
+    .apply-dark-card .field textarea::placeholder {
+      color: #94A3B8;
+    }
+
+    .apply-dark-card .field input:focus,
+    .apply-dark-card .field select:focus,
+    .apply-dark-card .field textarea:focus {
+      background: #090D16;
+      border-color: #FB7185;
+      box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.22);
+    }
+
+    .badge-rose {
+      background: rgba(244, 63, 94, 0.18);
+      color: #FDA4AF;
+      border: 1px solid rgba(251, 113, 133, 0.45);
+    }
 
     .hero-grid {
       display: grid;
@@ -367,24 +456,19 @@
       border-color: var(--ink-dark);
     }
 
-    .selected-box {
-      background: #FFFBEB;
-      border: 1px solid #FDE68A;
-      border-radius: var(--radius-md);
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    @media (min-width: 640px) {
-      .selected-box { flex-direction: row; align-items: center; justify-content: space-between; }
-    }
-
     .alert-success {
       background: #F0FDF4;
       border: 1px solid #86EFAC;
       color: #14532D;
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-top: 20px;
+    }
+
+    .alert-code-notice {
+      background: rgba(15, 23, 42, 0.95);
+      border: 1.5px solid #FB7185;
+      color: #FFF1F2;
       border-radius: var(--radius-md);
       padding: 18px;
       margin-top: 20px;
@@ -520,7 +604,7 @@
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.55);
       z-index: 60;
       display: flex;
       align-items: flex-start;
@@ -550,8 +634,7 @@
   <script>
     window.APP_CONFIG = {
       SUPABASE_URL: "https://jcoefmlgttuifystrmpq.supabase.co",
-      SUPABASE_ANON_KEY: "sb_publishable_8FDLRsK6hyW9fyx9o_kxUg_v3tLKc_N",
-      EMAIL_WEBHOOK_URL: ""
+      SUPABASE_ANON_KEY: "sb_publishable_8FDLRsK6hyW9fyx9o_kxUg_v3tLKc_N"
     };
   </script>
 </head>
@@ -583,8 +666,8 @@
   </header>
 
   <!-- DRAWER -->
-  <div id="drawerBackdrop" class="drawer-backdrop hidden pointer-events-none"></div>
-  <aside id="mobileDrawer" class="drawer-panel hidden pointer-events-none" aria-label="Menu latéral">
+  <div id="drawerBackdrop" class="drawer-backdrop hidden"></div>
+  <aside id="mobileDrawer" class="drawer-panel hidden" aria-label="Menu latéral">
     <div>
       <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid var(--border-warm);">
         <h2 style="font-size:1.5rem;">Menu</h2>
@@ -616,10 +699,10 @@
     <section id="sec-home" class="page-section">
       <div class="card hero-grid">
         <div>
-          <span class="badge badge-amber">Élevage familial &bull; Suivi en temps réel sur Supabase</span>
+          <span class="badge badge-amber">Élevage familial &bull; Base Supabase en direct</span>
           <h1 class="hero-title">Des chatons équilibrés, élevés avec soin au cœur de notre foyer.</h1>
           <p style="color:var(--ink-muted);margin-top:14px;font-size:1rem;">
-            Chaque candidature est enregistrée dans notre base Supabase et déclenche un e-mail automatique d'accueil avec votre numéro de suivi. Vous suivez chaque étape en direct depuis votre espace dossier.
+            Chaque candidature est enregistrée dans notre base Supabase avec un code de suivi unique. Conservez bien votre code pour consulter votre dossier sur le site à tout moment.
           </p>
           <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;">
             <button type="button" class="btn btn-primary btn-lg" data-nav="inventory">Découvrir nos chatons</button>
@@ -633,24 +716,24 @@
 
       <div class="steps-grid">
         <div class="card">
-          <span class="badge badge-amber">Étape 1 — E-mail #1 auto</span>
-          <h2 style="font-size:1.65rem;margin-top:10px;">Candidature &amp; Bienvenue</h2>
+          <span class="badge badge-amber">Étape 1</span>
+          <h2 style="font-size:1.65rem;margin-top:10px;">Candidature &amp; Code de suivi</h2>
           <p style="color:var(--ink-muted);font-size:0.9rem;margin-top:8px;">
-            Dès l'envoi, vous recevez un e-mail automatique de bienvenue dans votre parcours d'adoption avec votre code de suivi. Le bon de livraison n'est pas encore joint à ce stade.
+            Après validation de votre candidature, copiez votre code de suivi (ex. LPF-XXXX) : il est indispensable pour retrouver vos informations sur le site année après année.
           </p>
         </div>
         <div class="card">
-          <span class="badge badge-amber">Étape 2 — E-mail #2 auto</span>
-          <h2 style="font-size:1.65rem;margin-top:10px;">Approbation &amp; Étapes</h2>
+          <span class="badge badge-amber">Étape 2</span>
+          <h2 style="font-size:1.65rem;margin-top:10px;">Validation &amp; Acompte</h2>
           <p style="color:var(--ink-muted);font-size:0.9rem;margin-top:8px;">
-            Dès validation de votre dossier dans notre base, un e-mail automatique vous détaille les étapes d'adoption, l'acompte et la préparation de la remise.
+            Dès validation de votre dossier et règlement de l'acompte (minimum 100 €), votre statut évolue dans la base de données.
           </p>
         </div>
         <div class="card">
-          <span class="badge badge-amber">Étape 3 — Dossier complet</span>
+          <span class="badge badge-amber">Étape 3</span>
           <h2 style="font-size:1.65rem;margin-top:10px;">Confirmation &amp; Livraison</h2>
           <p style="color:var(--ink-muted);font-size:0.9rem;margin-top:8px;">
-            Une fois le dossier confirmé et l'acompte réglé, le bon de livraison complet (compagnie, livreur, client, références) et vos documents s'ouvrent dans votre suivi.
+            Une fois le dossier confirmé et payé, le bon de livraison complet (compagnie, livreur, client, références) et vos documents s'ouvrent dans votre suivi.
           </p>
         </div>
       </div>
@@ -662,7 +745,7 @@
         <div>
           <h2 style="font-size:2.3rem;">Nos chatons</h2>
           <p style="color:var(--ink-muted);font-size:0.92rem;margin-top:4px;">
-            La majorité de nos chatons sont proposés entre <strong>200 € et 350 €</strong>, avec quelques lignées d'exception entre <strong>900 € et 1 050 €</strong>.
+            La grande majorité de nos chatons sont entre <strong>150 € et 300 €</strong> (nos meilleures sélections autour de <strong>220 €–260 €</strong>), avec 4 lignées à <strong>600 €–1 200 €</strong>. Acompte minimum : <strong>100 €</strong>.
           </p>
         </div>
         <div class="filter-group" role="group" aria-label="Filtrer les chatons">
@@ -675,28 +758,28 @@
       <div id="kittenGrid" class="kitten-grid"></div>
     </section>
 
-    <!-- 3. CANDIDATURE -->
+    <!-- 3. CANDIDATURE (DARK + ROSE/PINK DECORATED FORM) -->
     <section id="sec-application" class="page-section hidden">
-      <div class="narrow-wrap card">
-        <div style="padding-bottom:16px;border-bottom:1px solid var(--border-warm);margin-bottom:20px;">
-          <span class="badge badge-amber">Questionnaire d'accueil &bull; Envoi automatique E-mail #1</span>
-          <h2 style="font-size:2.2rem;margin-top:8px;">Formulaire de candidature</h2>
-          <p style="color:var(--ink-muted);font-size:0.9rem;margin-top:4px;">
-            Renseignez vos informations et votre foyer. À l'envoi, votre dossier est enregistré sur Supabase et un e-mail de bienvenue vous est envoyé automatiquement.
+      <div class="narrow-wrap apply-dark-card">
+        <div style="position:relative;padding-bottom:16px;border-bottom:1px solid rgba(251,113,133,0.3);margin-bottom:20px;">
+          <span class="badge badge-rose">&#10047; Dossier d'adoption &bull; Enregistrement base réelle</span>
+          <h2 style="font-size:2.3rem;margin-top:8px;">Formulaire de candidature</h2>
+          <p class="apply-muted" style="font-size:0.9rem;margin-top:4px;">
+            Remplissez vos informations ci-dessous. À l'envoi, vous recevrez votre code de suivi à copier et conserver.
           </p>
         </div>
 
-        <div class="selected-box">
+        <div class="apply-selected-box">
           <div>
-            <span style="font-size:0.75rem;font-weight:700;text-transform:uppercase;color:var(--accent-amber);">Chaton sélectionné</span>
-            <p id="selectedKittenTitle" style="font-weight:700;font-size:1rem;margin-top:2px;">Aucun chaton sélectionné — choisissez-en un dans Nos chatons</p>
-            <p id="selectedKittenSub" style="font-size:0.8rem;color:var(--ink-muted);margin-top:2px;"></p>
+            <span style="font-size:0.75rem;font-weight:700;text-transform:uppercase;color:#FDA4AF;">&#9829; Chaton sélectionné</span>
+            <p id="selectedKittenTitle" style="font-weight:700;font-size:1rem;margin-top:2px;color:#FFFFFF;">Noisette (British Shorthair — LPF-K01)</p>
+            <p id="selectedKittenSub" class="apply-muted" style="font-size:0.82rem;margin-top:2px;">Prix total : 240 € • Acompte : 100 €</p>
           </div>
-          <button type="button" class="btn btn-secondary btn-sm" data-nav="inventory">Choisir un chaton</button>
+          <button type="button" class="btn btn-secondary btn-sm" data-nav="inventory">Changer de chaton</button>
         </div>
 
-        <form id="applicationForm">
-          <input type="hidden" id="appKittenId" />
+        <form id="applicationForm" style="position:relative;">
+          <input type="hidden" id="appKittenId" value="LPF-K01" />
 
           <div class="form-grid-2">
             <div class="field">
@@ -787,22 +870,26 @@
             <textarea id="appNotes" rows="3" placeholder="Décrivez votre quotidien, votre disponibilité ou vos questions..."></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary btn-lg btn-full">
-            Valider ma candidature &amp; recevoir mon e-mail de suivi
+          <button type="submit" class="btn btn-rose btn-lg btn-full">
+            &#10047; Soumettre ma candidature &amp; obtenir mon code de suivi
           </button>
         </form>
 
         <div id="appDbNotice" class="alert-error hidden"></div>
 
-        <div id="appSuccessBox" class="alert-success hidden">
-          <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">
-            Candidature enregistrée &bull; E-mail automatique #1 envoyé
+        <div id="appSuccessBox" class="alert-code-notice hidden">
+          <p style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#FDA4AF;">
+            Candidature enregistrée — Copiez votre code de suivi
           </p>
-          <p style="margin-top:6px;font-size:0.95rem;">
-            Votre numéro de suivi : <strong id="generatedCode" style="font-family:monospace;font-size:1.1rem;"></strong>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:10px;">
+            <strong id="generatedCode" style="font-family:monospace;font-size:1.3rem;background:#1E293B;color:#FFF1F2;padding:6px 12px;border-radius:8px;border:1px solid #FB7185;"></strong>
+            <button type="button" id="copyCodeBtn" class="btn btn-secondary btn-sm">Copier le code</button>
+          </div>
+          <p style="margin-top:12px;font-size:0.9rem;line-height:1.6;color:#F8FAFC;">
+            <strong>Important :</strong> Copiez et gardez ce code précieusement. Vous allez recevoir votre code de suivi et, <strong>sans ce code de suivi, vous ne pourrez pas suivre vos informations année après année sur le site</strong>.
           </p>
-          <p id="welcomeSummary" style="margin-top:8px;font-size:0.84rem;background:#FFFFFF;padding:12px;border-radius:8px;border:1px solid #BBF7D0;white-space:pre-line;"></p>
-          <button type="button" id="openTrackingFromSuccessBtn" class="btn btn-sage btn-sm" style="margin-top:12px;">
+          <p id="dossierMiniSummary" class="apply-muted" style="margin-top:8px;font-size:0.82rem;white-space:pre-line;"></p>
+          <button type="button" id="openTrackingFromSuccessBtn" class="btn btn-rose btn-sm" style="margin-top:14px;">
             Ouvrir mon suivi en direct
           </button>
         </div>
@@ -816,7 +903,7 @@
           <div>
             <h2 style="font-size:2.3rem;">Suivi de dossier &amp; Documents</h2>
             <p style="color:var(--ink-muted);font-size:0.9rem;margin-top:4px;">
-              Saisissez votre numéro de dossier (ex. LPF-4821) pour consulter l'avancement en direct depuis Supabase.
+              Saisissez votre code de suivi (ex. LPF-4821) pour consulter vos informations enregistrées sur Supabase.
             </p>
           </div>
           <button type="button" id="openAdminTrackingBtn" class="btn btn-secondary btn-sm">
@@ -825,7 +912,7 @@
         </div>
 
         <form id="trackingForm" class="lookup-row">
-          <input id="trackingCodeInput" type="text" required placeholder="Numéro de dossier (ex. LPF-XXXX)" />
+          <input id="trackingCodeInput" type="text" required placeholder="Code de suivi (ex. LPF-XXXX)" />
           <button type="submit" class="btn btn-primary">Rechercher</button>
         </form>
 
@@ -873,7 +960,6 @@
             </div>
 
             <div id="printableArea" class="unlocked-grid">
-              <!-- Complete Delivery Slip with Carrier, Driver, Client & References -->
               <div class="receipt-paper">
                 <div class="receipt-divider" style="text-align:center;">
                   <div style="font-weight:700;font-size:0.92rem;">L'ÉLEVAGE DES PETITS FÉLINS</div>
@@ -928,7 +1014,6 @@
                 </div>
               </div>
 
-              <!-- Certificate & Welcome Booklet -->
               <div>
                 <div class="doc-card">
                   <span class="badge badge-amber">Certificat</span>
@@ -956,13 +1041,13 @@
       <div class="wide-wrap steps-grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:0;">
         <div class="card">
           <span class="badge badge-amber">Règlement</span>
-          <h2 style="font-size:2rem;margin-top:8px;">Acompte &amp; Solde à la livraison</h2>
+          <h2 style="font-size:2rem;margin-top:8px;">Acompte (min. 100 €) &amp; Solde</h2>
           <p style="color:var(--ink-muted);font-size:0.9rem;margin-top:10px;">
-            Le règlement de l'acompte valide votre réservation et débloque vos documents officiels dans l'espace de suivi. Le <strong>solde à la livraison</strong> correspond au reste du montant réglé lors de la remise du chaton.
+            L'acompte (toujours d'au moins <strong>100 €</strong>) valide votre réservation et débloque vos documents officiels dans l'espace de suivi. Le <strong>solde à la livraison</strong> correspond au reste du montant réglé lors de la remise.
           </p>
           <div style="background:var(--bg-cream);border:1px solid var(--border-warm);border-radius:var(--radius-md);padding:14px;margin-top:16px;font-size:0.88rem;">
             <p><strong>Élevage :</strong> L'élevage des petits félins</p>
-            <p style="margin-top:4px;"><strong>Référence :</strong> Votre numéro LPF-XXXX</p>
+            <p style="margin-top:4px;"><strong>Référence :</strong> Votre code LPF-XXXX</p>
             <p style="margin-top:4px;"><strong>E-mail :</strong> maisonpourchats@gmail.com</p>
             <p style="margin-top:4px;"><strong>Téléphone / WhatsApp :</strong> +33 7 48 25 85 22</p>
           </div>
@@ -977,7 +1062,7 @@
               <input id="cntName" type="text" required />
             </div>
             <div class="field">
-              <label for="cntCode">Numéro de dossier (facultatif)</label>
+              <label for="cntCode">Code de suivi (facultatif)</label>
               <input id="cntCode" type="text" placeholder="LPF-XXXX" />
             </div>
             <div class="field">
@@ -998,7 +1083,7 @@
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>&copy; 2026 L'élevage des petits félins &bull; Backend Supabase</p>
+      <p>&copy; 2026 L'élevage des petits félins &bull; Base de données Supabase</p>
       <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;">
         <span>maisonpourchats@gmail.com</span>
         <span>+33 7 48 25 85 22</span>
@@ -1021,7 +1106,7 @@
   </div>
 
   <!-- ADMIN MODAL -->
-  <div id="adminModal" class="modal-backdrop hidden pointer-events-none">
+  <div id="adminModal" class="modal-backdrop hidden">
     <div class="modal-card">
       <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid var(--border-warm);">
         <h2 style="font-size:1.85rem;">Administration Élevage</h2>
@@ -1030,7 +1115,7 @@
 
       <form id="configForm" style="background:var(--bg-cream);border:1px solid var(--border-warm);border-radius:var(--radius-md);padding:16px;margin-top:16px;">
         <p style="font-size:0.76rem;font-weight:700;text-transform:uppercase;color:var(--accent-amber);margin-bottom:10px;">
-          Paramètres Supabase &amp; Envoi Automatique d'E-mails
+          Connexion base de données Supabase
         </p>
         <div class="form-grid-2">
           <div class="field" style="margin-bottom:10px;">
@@ -1042,10 +1127,6 @@
             <input id="cfgKey" type="text" placeholder="sb_publishable_..." />
           </div>
         </div>
-        <div class="field" style="margin-bottom:12px;">
-          <label for="cfgEmail">URL Webhook E-mails automatiques (Edge Function / Make / Resend)</label>
-          <input id="cfgEmail" type="text" placeholder="https://votre-webhook-ou-edge-function" />
-        </div>
         <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;">
           <span id="cfgStatus" style="font-size:0.8rem;color:var(--ink-muted);">Supabase connecté</span>
           <button type="submit" class="btn btn-primary btn-sm">Enregistrer</button>
@@ -1055,7 +1136,7 @@
       <div id="adminDbNotice" class="alert-error hidden"></div>
 
       <div style="margin-top:20px;">
-        <h3 style="font-size:1.5rem;margin-bottom:10px;">Dossiers enregistrés &amp; E-mails automatiques</h3>
+        <h3 style="font-size:1.5rem;margin-bottom:10px;">Dossiers enregistrés dans la base</h3>
         <div id="adminDossiersContainer" style="display:flex;flex-direction:column;gap:10px;"></div>
       </div>
     </div>
@@ -1063,32 +1144,621 @@
 
   <script>
     (function () {
+      // 26 kittens in 150-300 (top selections in 220-260), plus 4 in 600, 750, 1000, 1200
       const KITTENS = [
-        { id: "LPF-K01", name: "Noisette", breed: "British Shorthair", age: "12 sem.", sex: "Femelle", price: 260, status: "available", desc: "Douce, calme et très proche de sa famille.", img: "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K02", name: "Céleste", breed: "Ragdoll", age: "13 sem.", sex: "Femelle", price: 960, status: "available", desc: "Lignée d'exception, affectueuse et détendue.", img: "https://images.unsplash.com/photo-1513245543132-31f507417b26?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K03", name: "Milo", breed: "Maine Coon", age: "14 sem.", sex: "Mâle", price: 1020, status: "available", desc: "Grand gabarit, joueur, curieux et sociable.", img: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K04", name: "Plume", breed: "Sacré de Birmanie", age: "12 sem.", sex: "Femelle", price: 240, status: "available", desc: "Paisible et attachante au quotidien.", img: "https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K05", name: "Gaspard", breed: "Chartreux", age: "11 sem.", sex: "Mâle", price: 230, status: "adopted", progress: 85, desc: "Discret, équilibré et fidèle.", img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K06", name: "Ambre", breed: "Sibérien", age: "12 sem.", sex: "Femelle", price: 280, status: "available", desc: "Vive, câline et très attentive.", img: "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K07", name: "Sacha", breed: "Scottish Fold", age: "11 sem.", sex: "Mâle", price: 250, status: "available", desc: "Tranquille et bien adapté à la vie intérieure.", img: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K08", name: "Iris", breed: "Bleu Russe", age: "13 sem.", sex: "Femelle", price: 290, status: "available", desc: "Élégante, douce et attachée à son foyer.", img: "https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K09", name: "Léon", breed: "Européen", age: "10 sem.", sex: "Mâle", price: 200, status: "available", desc: "Enjoué, propre et très proche de l'humain.", img: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K10", name: "Perle", breed: "Persan", age: "13 sem.", sex: "Femelle", price: 310, status: "pending", desc: "Préparation vétérinaire en cours.", img: "https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K11", name: "Oscar", breed: "Bengal", age: "14 sem.", sex: "Mâle", price: 940, status: "available", desc: "Robe marquée contrastée, dynamique et joueur.", img: "https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K12", name: "Margot", breed: "British Longhair", age: "12 sem.", sex: "Femelle", price: 270, status: "available", desc: "Douceur et calme au quotidien.", img: "https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K13", name: "Félix", breed: "Norvégien", age: "13 sem.", sex: "Mâle", price: 320, status: "adopted", progress: 70, desc: "Avenant et joueur.", img: "https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K14", name: "Capucine", breed: "Exotic Shorthair", age: "12 sem.", sex: "Femelle", price: 250, status: "available", desc: "Calme et très câline.", img: "https://images.unsplash.com/photo-1571566882372-1598d88abd90?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K15", name: "Roméo", breed: "Ragdoll", age: "14 sem.", sex: "Mâle", price: 340, status: "available", desc: "Sociable et serein.", img: "https://images.unsplash.com/photo-1548247416-ec66f4900b2e?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K16", name: "Zélie", breed: "Abyssin", age: "11 sem.", sex: "Femelle", price: 260, status: "pending", desc: "Ouverture prochaine après contrôle.", img: "https://images.unsplash.com/photo-1529778873920-4da4926a72c2?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K17", name: "Simba", breed: "Maine Coon", age: "15 sem.", sex: "Mâle", price: 350, status: "available", desc: "Affectueux et présent.", img: "https://images.unsplash.com/photo-1501820488136-72669149e0d4?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K18", name: "Chloé", breed: "Européen", age: "10 sem.", sex: "Femelle", price: 210, status: "available", desc: "Tendresse et vivacité.", img: "https://images.unsplash.com/photo-1511044568932-338cba0ad803?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K19", name: "Arthur", breed: "Chartreux", age: "12 sem.", sex: "Mâle", price: 240, status: "available", desc: "Posé et attentif.", img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K20", name: "Louna", breed: "Sacré de Birmanie", age: "13 sem.", sex: "Femelle", price: 280, status: "adopted", progress: 92, desc: "Douce et attachante.", img: "https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K21", name: "Balthazar", breed: "British Shorthair", age: "12 sem.", sex: "Mâle", price: 270, status: "available", desc: "Paisible et gourmand.", img: "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K22", name: "Opaline", breed: "Angora Turc", age: "12 sem.", sex: "Femelle", price: 220, status: "available", desc: "Souple et affectueuse.", img: "https://images.unsplash.com/photo-1513245543132-31f507417b26?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K23", name: "Pablo", breed: "Siamois", age: "11 sem.", sex: "Mâle", price: 220, status: "available", desc: "Expressif et proche de son foyer.", img: "https://images.unsplash.com/photo-1548247416-ec66f4900b2e?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K24", name: "Mina", breed: "Sibérien", age: "13 sem.", sex: "Femelle", price: 300, status: "pending", desc: "Suivi en cours avant disponibilité.", img: "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K25", name: "Hector", breed: "Highland Fold", age: "12 sem.", sex: "Mâle", price: 260, status: "available", desc: "Doux et sociable.", img: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=700&q=80" },
-        { id: "LPF-K26", name: "Agathe", breed: "Européen", age: "10 sem.", sex: "Femelle", price: 210, status: "available", desc: "Câline et équilibrée.", img: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K01", name: "Noisette", breed: "British Shorthair", age: "12 sem.", sex: "Femelle", price: 250, status: "available", desc: "Douce, calme et très proche de sa famille.", img: "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K02", name: "Céleste", breed: "Ragdoll", age: "13 sem.", sex: "Femelle", price: 1000, status: "available", desc: "Lignée d'exception, affectueuse et détendue.", img: "https://images.unsplash.com/photo-1513245543132-31f507417b26?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K03", name: "Milo", breed: "Maine Coon", age: "14 sem.", sex: "Mâle", price: 1200, status: "available", desc: "Grand gabarit, joueur, curieux et sociable.", img: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K04", name: "Plume", breed: "Sacré de Birmanie", age: "12 sem.", sex: "Femelle", price: 230, status: "available", desc: "Paisible et attachante au quotidien.", img: "https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K05", name: "Gaspard", breed: "Chartreux", age: "11 sem.", sex: "Mâle", price: 200, status: "adopted", progress: 85, desc: "Discret, équilibré et fidèle.", img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K06", name: "Ambre", breed: "Sibérien", age: "12 sem.", sex: "Femelle", price: 255, status: "available", desc: "Vive, câline et très attentive.", img: "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K07", name: "Sacha", breed: "Scottish Fold", age: "11 sem.", sex: "Mâle", price: 220, status: "available", desc: "Tranquille et bien adapté à la vie intérieure.", img: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K08", name: "Iris", breed: "Bleu Russe", age: "13 sem.", sex: "Femelle", price: 260, status: "available", desc: "Élégante, douce et attachée à son foyer.", img: "https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K09", name: "Léon", breed: "Européen", age: "10 sem.", sex: "Mâle", price: 160, status: "available", desc: "Enjoué, propre et très proche de l'humain.", img: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K10", name: "Perle", breed: "Persan", age: "13 sem.", sex: "Femelle", price: 240, status: "pending", desc: "Préparation vétérinaire en cours.", img: "https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K11", name: "Oscar", breed: "Bengal", age: "14 sem.", sex: "Mâle", price: 750, status: "available", desc: "Robe marquée contrastée, dynamique et joueur.", img: "https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K12", name: "Margot", breed: "British Longhair", age: "12 sem.", sex: "Femelle", price: 225, status: "available", desc: "Douceur et calme au quotidien.", img: "https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K13", name: "Félix", breed: "Norvégien", age: "13 sem.", sex: "Mâle", price: 250, status: "adopted", progress: 70, desc: "Avenant et joueur.", img: "https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K14", name: "Capucine", breed: "Exotic Shorthair", age: "12 sem.", sex: "Femelle", price: 200, status: "available", desc: "Calme et très câline.", img: "https://images.unsplash.com/photo-1571566882372-1598d88abd90?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K15", name: "Roméo", breed: "Ragdoll", age: "14 sem.", sex: "Mâle", price: 600, status: "available", desc: "Sociable et serein.", img: "https://images.unsplash.com/photo-1548247416-ec66f4900b2e?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K16", name: "Zélie", breed: "Abyssin", age: "11 sem.", sex: "Femelle", price: 220, status: "pending", desc: "Ouverture prochaine après contrôle.", img: "https://images.unsplash.com/photo-1529778873920-4da4926a72c2?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K17", name: "Simba", breed: "Maine Coon", age: "15 sem.", sex: "Mâle", price: 260, status: "available", desc: "Affectueux et présent.", img: "https://images.unsplash.com/photo-1501820488136-72669149e0d4?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K18", name: "Chloé", breed: "Européen", age: "10 sem.", sex: "Femelle", price: 150, status: "available", desc: "Tendresse et vivacité.", img: "https://images.unsplash.com/photo-1511044568932-338cba0ad803?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K19", name: "Arthur", breed: "Chartreux", age: "12 sem.", sex: "Mâle", price: 190, status: "available", desc: "Posé et attentif.", img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K20", name: "Louna", breed: "Sacré de Birmanie", age: "13 sem.", sex: "Femelle", price: 245, status: "adopted", progress: 92, desc: "Douce et attachante.", img: "https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K21", name: "Balthazar", breed: "British Shorthair", age: "12 sem.", sex: "Mâle", price: 235, status: "available", desc: "Paisible et gourmand.", img: "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K22", name: "Opaline", breed: "Angora Turc", age: "12 sem.", sex: "Femelle", price: 180, status: "available", desc: "Souple et affectueuse.", img: "https://images.unsplash.com/photo-1513245543132-31f507417b26?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K23", name: "Pablo", breed: "Siamois", age: "11 sem.", sex: "Mâle", price: 200, status: "available", desc: "Expressif et proche de son foyer.", img: "https://images.unsplash.com/photo-1548247416-ec66f4900b2e?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K24", name: "Mina", breed: "Sibérien", age: "13 sem.", sex: "Femelle", price: 250, status: "pending", desc: "Suivi en cours avant disponibilité.", img: "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K25", name: "Hector", breed: "Highland Fold", age: "12 sem.", sex: "Mâle", price: 225, status: "available", desc: "Doux et sociable.", img: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K26", name: "Agathe", breed: "Européen", age: "10 sem.", sex: "Femelle", price: 155, status: "available", desc: "Câline et équilibrée.", img: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K27", name: "Ulysse", breed: "Maine Coon", age: "14 sem.", sex: "Mâle", price: 260, status: "adopted", progress: 65, desc: "Calme et avenant.", img: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K28", name: "Solène", breed: "Ragdoll", age: "13 sem.", sex: "Femelle", price: 255, status: "available", desc: "Sereine et douce.", img: "https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K29", name: "César", breed: "Burmese", age: "12 sem.", sex: "Mâle", price: 210, status: "available", desc: "Curieux et câlin.", img: "https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K30", name: "Étoile", breed: "Scottish Straight", age: "11 sem.", sex: "Femelle", price: 195, status: "available", desc: "Calme et attachante.", img: "https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=700&q=80" }
+      ];
+
+      const CARRIER_COMPANY = "Transport Animalier Agréé DTV — L'Élevage des Petits Félins Logistique";
+      const DRIVER_NAMES = [
+        "Marc Lefèvre — Convoyeur DTV",
+        "Julien Moreau — Convoyeur DTV",
+        "Claire Garnier — Convoyeuse DTV"
+      ];
+
+      const DOSSIERS_KEY = "lpf_dossiers_live_v3";
+      const CONFIG_KEY = "lpf_cfg_live_v3";
+      let currentFilter = "all";
+
+      function getConfig() {
+        let saved = {};
+        try { saved = JSON.parse(localStorage.getItem(CONFIG_KEY) || "{}"); } catch (_) {}
+        return {
+          url: (saved.url || window.APP_CONFIG?.SUPABASE_URL || "").trim().replace(/\/$/, ""),
+          key: (saved.key || window.APP_CONFIG?.SUPABASE_ANON_KEY || "").trim()
+        };
+      }
+
+      function loadDossiers() {
+        try { return JSON.parse(localStorage.getItem(DOSSIERS_KEY) || "[]"); } catch (_) { return []; }
+      }
+
+      function saveDossiers(list) {
+        localStorage.setItem(DOSSIERS_KEY, JSON.stringify(list));
+      }
+
+      // Upfront payment is always 100 or above (never less than 100)
+      function depositOf(price) {
+        return Math.max(100, Math.round(price * 0.30));
+      }
+
+      function assignDriver(code) {
+        const digits = String(code || "0").replace(/\D/g, "");
+        const idx = (parseInt(digits, 10) || 0) % DRIVER_NAMES.length;
+        return DRIVER_NAMES[idx];
+      }
+
+      function showDbNotice(elementId, message) {
+        const el = document.getElementById(elementId);
+        if (!el) return;
+        if (!message) {
+          el.classList.add("hidden");
+          el.textContent = "";
+          return;
+        }
+        el.textContent = message;
+        el.classList.remove("hidden");
+      }
+
+      // Supabase REST helpers
+      async function sbInsert(record) {
+        const cfg = getConfig();
+        if (!cfg.url || !cfg.key) return { ok: false, error: "Supabase URL ou clé manquante." };
+        try {
+          const res = await fetch(`${cfg.url}/rest/v1/applications`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "apikey": cfg.key,
+              "Authorization": `Bearer ${cfg.key}`,
+              "Prefer": "return=representation"
+            },
+            body: JSON.stringify(record)
+          });
+          if (!res.ok) {
+            const txt = await res.text();
+            return { ok: false, error: `Supabase refus (${res.status}) : ${txt}` };
+          }
+          return { ok: true };
+        } catch (err) {
+          return { ok: false, error: `Erreur réseau Supabase : ${err.message}` };
+        }
+      }
+
+      async function sbGetOne(code) {
+        const cfg = getConfig();
+        if (!cfg.url || !cfg.key) return null;
+        try {
+          const res = await fetch(`${cfg.url}/rest/v1/applications?tracking_id=eq.${encodeURIComponent(code)}&select=*`, {
+            headers: {
+              "apikey": cfg.key,
+              "Authorization": `Bearer ${cfg.key}`
+            }
+          });
+          if (!res.ok) return null;
+          const rows = await res.json();
+          return rows && rows.length ? rows[0] : null;
+        } catch (_) {
+          return null;
+        }
+      }
+
+      async function sbPatch(code, patch) {
+        const cfg = getConfig();
+        if (!cfg.url || !cfg.key) return { ok: false, error: "Supabase non configuré." };
+        try {
+          const res = await fetch(`${cfg.url}/rest/v1/applications?tracking_id=eq.${encodeURIComponent(code)}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              "apikey": cfg.key,
+              "Authorization": `Bearer ${cfg.key}`,
+              "Prefer": "return=representation"
+            },
+            body: JSON.stringify(patch)
+          });
+          if (!res.ok) {
+            const txt = await res.text();
+            return { ok: false, error: `Mise à jour Supabase refusée (${res.status}) : ${txt}` };
+          }
+          return { ok: true };
+        } catch (err) {
+          return { ok: false, error: `Erreur réseau Supabase : ${err.message}` };
+        }
+      }
+
+      async function sbSyncAll() {
+        const cfg = getConfig();
+        if (!cfg.url || !cfg.key) return;
+        try {
+          const res = await fetch(`${cfg.url}/rest/v1/applications?select=*&order=created_at.desc`, {
+            headers: {
+              "apikey": cfg.key,
+              "Authorization": `Bearer ${cfg.key}`
+            }
+          });
+          if (res.ok) {
+            const rows = await res.json();
+            if (Array.isArray(rows)) {
+              saveDossiers(rows);
+              showDbNotice("adminDbNotice", "");
+            }
+          } else {
+            const txt = await res.text();
+            showDbNotice("adminDbNotice", `Lecture Supabase (${res.status}) : ${txt}`);
+          }
+        } catch (err) {
+          showDbNotice("adminDbNotice", `Erreur de connexion Supabase : ${err.message}`);
+        }
+      }
+
+      // Navigation & Drawer
+      function navigateTo(section) {
+        document.querySelectorAll(".page-section").forEach(el => el.classList.add("hidden"));
+        const target = document.getElementById(`sec-${section}`);
+        if (target) target.classList.remove("hidden");
+        document.querySelectorAll(".nav-btn").forEach(btn => {
+          btn.classList.toggle("active", btn.getAttribute("data-nav") === section);
+        });
+        closeDrawer();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function openDrawer() {
+        document.getElementById("mobileDrawer").classList.remove("hidden");
+        document.getElementById("drawerBackdrop").classList.remove("hidden");
+        document.getElementById("menuToggleBtn").setAttribute("aria-expanded", "true");
+      }
+
+      function closeDrawer() {
+        document.getElementById("mobileDrawer").classList.add("hidden");
+        document.getElementById("drawerBackdrop").classList.add("hidden");
+        document.getElementById("menuToggleBtn").setAttribute("aria-expanded", "false");
+      }
+
+      // Render Inventory
+      function renderKittens() {
+        const grid = document.getElementById("kittenGrid");
+        const items = currentFilter === "all" ? KITTENS : KITTENS.filter(k => k.status === currentFilter);
+
+        grid.innerHTML = items.map(k => {
+          const dep = depositOf(k.price);
+          if (k.status === "adopted") {
+            return `
+              <article class="kitten-card">
+                <div class="kitten-img-box">
+                  <img src="${k.img}" alt="${k.name}" loading="lazy" />
+                  <span class="badge badge-dark">Adopté</span>
+                </div>
+                <div class="kitten-body">
+                  <div>
+                    <div class="kitten-top">
+                      <h3 style="font-size:1.65rem;">${k.name}</h3>
+                      <span style="font-size:0.78rem;font-family:monospace;color:var(--ink-muted);">${k.id}</span>
+                    </div>
+                    <p class="kitten-meta">${k.breed} &bull; ${k.sex} &bull; ${k.age}</p>
+                    <p class="kitten-desc">${k.desc}</p>
+                  </div>
+                  <div class="kitten-footer">
+                    <div style="display:flex;justify-content:space-between;font-size:0.78rem;color:var(--ink-muted);">
+                      <span>Archivage de la fiche</span>
+                      <span>${k.progress || 80}%</span>
+                    </div>
+                    <div class="progress-track">
+                      <div class="progress-fill" style="width:${k.progress || 80}%;"></div>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-full" disabled>Adopté</button>
+                  </div>
+                </div>
+              </article>
+            `;
+          }
+
+          const badgeHtml = k.status === "pending"
+            ? `<span class="badge badge-amber" style="border:1px solid #FCD34D;">Prochainement</span>`
+            : `<span class="badge badge-green">Disponible</span>`;
+
+          const btnLabel = k.status === "pending" ? "Pré-candidature" : "Postuler pour ce chaton";
+
+          return `
+            <article class="kitten-card">
+              <div class="kitten-img-box">
+                <img src="${k.img}" alt="${k.name}" loading="lazy" />
+                ${badgeHtml}
+              </div>
+              <div class="kitten-body">
+                <div>
+                  <div class="kitten-top">
+                    <h3 style="font-size:1.65rem;">${k.name}</h3>
+                    <span style="font-size:0.78rem;font-family:monospace;color:var(--ink-muted);">${k.id}</span>
+                  </div>
+                  <p class="kitten-meta">${k.breed} &bull; ${k.sex} &bull; ${k.age}</p>
+                  <p class="kitten-desc">${k.desc}</p>
+                </div>
+                <div class="kitten-footer">
+                  <div class="price-row">
+                    <strong style="font-size:1.15rem;">${k.price} €</strong>
+                    <span style="font-size:0.8rem;color:var(--ink-muted);">Acompte : <strong>${dep} €</strong></span>
+                  </div>
+                  <button type="button" class="btn btn-primary btn-full" data-select-kitten="${k.id}">${btnLabel}</button>
+                </div>
+              </div>
+            </article>
+          `;
+        }).join("");
+      }
+
+      function selectKitten(id) {
+        const k = KITTENS.find(item => item.id === id) || KITTENS[0];
+        const dep = depositOf(k.price);
+        document.getElementById("appKittenId").value = k.id;
+        document.getElementById("selectedKittenTitle").textContent = `${k.name} (${k.breed} — ${k.id})`;
+        document.getElementById("selectedKittenSub").textContent = `Prix total : ${k.price} € • Acompte : ${dep} €`;
+        navigateTo("application");
+      }
+
+      // Application Form -> Saves to Supabase + Displays Code to Copy
+      async function onApplicationSubmit(e) {
+        e.preventDefault();
+        showDbNotice("appDbNotice", "");
+        const k = KITTENS.find(item => item.id === document.getElementById("appKittenId").value) || KITTENS[0];
+        const dep = depositOf(k.price);
+        const bal = Math.max(0, k.price - dep);
+        const code = "LPF-" + Math.floor(1000 + Math.random() * 9000);
+        const dateStr = new Date(Date.now() + 7 * 86400000).toLocaleDateString("fr-FR", {
+          weekday: "long", day: "numeric", month: "long", year: "numeric"
+        });
+
+        const dossier = {
+          tracking_id: code,
+          kitten_id: k.id,
+          kitten_name: `${k.name} (${k.breed})`,
+          first_name: document.getElementById("appFirstName").value.trim(),
+          last_name: document.getElementById("appLastName").value.trim(),
+          email: document.getElementById("appEmail").value.trim(),
+          phone: document.getElementById("appPhone").value.trim(),
+          address: document.getElementById("appAddress").value.trim(),
+          housing_type: document.getElementById("appHousingType").value,
+          lifestyle: document.getElementById("appLifestyle").value,
+          kids: document.getElementById("appKids").value,
+          other_pets: document.getElementById("appOtherPets").value,
+          delivery_mode: document.getElementById("appDeliveryMode").value,
+          payment_method: document.getElementById("appPaymentMethod").value,
+          notes: document.getElementById("appNotes").value.trim(),
+          total_price: k.price,
+          deposit_amount: dep,
+          balance_amount: bal,
+          delivery_date: dateStr,
+          approved: false,
+          confirmed: false,
+          paid: false,
+          created_at: new Date().toISOString()
+        };
+
+        const list = loadDossiers();
+        list.unshift(dossier);
+        saveDossiers(list);
+
+        const sbRes = await sbInsert(dossier);
+        if (!sbRes.ok) {
+          showDbNotice("appDbNotice", `Enregistré localement, mais Supabase a signalé : ${sbRes.error}`);
+        }
+
+        document.getElementById("generatedCode").textContent = code;
+        document.getElementById("dossierMiniSummary").textContent =
+          `Candidat : ${dossier.first_name} ${dossier.last_name} • Chaton : ${dossier.kitten_name}\nTotal : ${dossier.total_price} € • Acompte : ${dossier.deposit_amount} € • Solde : ${dossier.balance_amount} €`;
+        document.getElementById("appSuccessBox").classList.remove("hidden");
+
+        document.getElementById("copyCodeBtn").onclick = () => {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(code).catch(() => {});
+          }
+          const btn = document.getElementById("copyCodeBtn");
+          btn.textContent = "Copié !";
+          setTimeout(() => { btn.textContent = "Copier le code"; }, 2000);
+        };
+
+        document.getElementById("openTrackingFromSuccessBtn").onclick = () => {
+          document.getElementById("trackingCodeInput").value = code;
+          navigateTo("tracking");
+          lookupDossier(code);
+        };
+      }
+
+      // Tracking Lookup
+      async function lookupDossier(rawCode) {
+        const code = (rawCode || "").trim().toUpperCase();
+        const errBox = document.getElementById("trackingError");
+        const resBox = document.getElementById("trackingResult");
+        errBox.classList.add("hidden");
+        resBox.classList.add("hidden");
+
+        let d = await sbGetOne(code);
+        if (!d) {
+          d = loadDossiers().find(item => item.tracking_id.toUpperCase() === code) || null;
+        } else {
+          const updated = loadDossiers().filter(item => item.tracking_id.toUpperCase() !== code);
+          updated.unshift(d);
+          saveDossiers(updated);
+        }
+
+        if (!d) {
+          errBox.textContent = `Aucun dossier trouvé pour le code "${code}". Vérifiez votre code de suivi.`;
+          errBox.classList.remove("hidden");
+          return;
+        }
+
+        document.getElementById("trkClient").textContent = `${d.first_name} ${d.last_name}`;
+        document.getElementById("trkKitten").textContent = d.kitten_name;
+        document.getElementById("trkAddress").textContent = d.address;
+        document.getElementById("trkAmounts").textContent = `${d.total_price} € (Acompte : ${d.deposit_amount} € • Solde à la livraison : ${d.balance_amount} €)`;
+        document.getElementById("trkDate").textContent = d.delivery_date;
+        document.getElementById("trkMode").textContent = d.delivery_mode;
+        document.getElementById("mapsAppLink").href = `https://maps.google.com/?q=${encodeURIComponent(d.address)}`;
+
+        const banner = document.getElementById("trackingBanner");
+        const gateBox = document.getElementById("gateBox");
+        const gateMsg = document.getElementById("gateMessage");
+        const unlocked = document.getElementById("unlockedDocs");
+
+        if (d.confirmed && d.paid) {
+          banner.className = "alert-success";
+          banner.innerHTML = `<strong>Dossier confirmé &amp; acompte réglé</strong><p style="font-size:0.88rem;margin-top:4px;">Livraison programmée pour le <strong>${d.delivery_date}</strong>. Votre bon de livraison complet et vos documents sont disponibles ci-dessous.</p>`;
+          gateBox.classList.add("hidden");
+          unlocked.classList.remove("hidden");
+
+          const driverName = assignDriver(d.tracking_id);
+          document.getElementById("rcptId").textContent = `RÉFÉRENCE DOSSIER : ${d.tracking_id}`;
+          document.getElementById("rcptSlipRef").textContent = `N° BON DE LIVRAISON : BL-${d.tracking_id.replace("LPF-", "")}`;
+          document.getElementById("rcptCarrier").textContent = CARRIER_COMPANY;
+          document.getElementById("rcptDriver").textContent = driverName;
+          document.getElementById("rcptName").textContent = `${d.first_name} ${d.last_name}`;
+          document.getElementById("rcptPhone").textContent = d.phone;
+          document.getElementById("rcptEmail").textContent = d.email;
+          document.getElementById("rcptAddr").textContent = d.address;
+          document.getElementById("rcptKitten").textContent = d.kitten_name;
+          document.getElementById("rcptDate").textContent = d.delivery_date;
+          document.getElementById("rcptDeliveryMode").textContent = d.delivery_mode;
+          document.getElementById("rcptPayMode").textContent = d.payment_method;
+          document.getElementById("rcptTotal").textContent = `${d.total_price} €`;
+          document.getElementById("rcptDeposit").textContent = `${d.deposit_amount} €`;
+          document.getElementById("rcptBalance").textContent = `${d.balance_amount} €`;
+          document.getElementById("certText").textContent =
+            `L'élevage des petits félins certifie la réservation de ${d.kitten_name} pour ${d.first_name} ${d.last_name} (${d.address}), référence ${d.tracking_id}, pris en charge par ${driverName} (${CARRIER_COMPANY}). Livraison prévue le ${d.delivery_date}.`;
+        } else if (d.confirmed && !d.paid) {
+          banner.className = "alert-warn";
+          banner.innerHTML = `<strong>Dossier confirmé — En attente du règlement de l'acompte</strong><p style="font-size:0.88rem;margin-top:4px;">Livraison prévue le <strong>${d.delivery_date}</strong>. Le bon de livraison s'ouvrira dès règlement de l'acompte.</p>`;
+          gateBox.classList.remove("hidden");
+          gateMsg.textContent = `Votre dossier est confirmé. Le règlement de l'acompte (${d.deposit_amount} €) débloquera le bon de livraison complet et vos documents.`;
+          unlocked.classList.add("hidden");
+        } else if (d.approved) {
+          banner.className = "alert-warn";
+          banner.innerHTML = `<strong>Candidature approuvée</strong><p style="font-size:0.88rem;margin-top:4px;">Votre candidature pour <strong>${d.kitten_name}</strong> est approuvée.</p>`;
+          gateBox.classList.remove("hidden");
+          gateMsg.textContent = `Étape suivante : confirmation du dossier et règlement de l'acompte (${d.deposit_amount} €) pour débloquer le bon de livraison.`;
+          unlocked.classList.add("hidden");
+        } else {
+          banner.className = "alert-warn";
+          banner.innerHTML = `<strong>Candidature enregistrée — En attente de validation</strong><p style="font-size:0.88rem;margin-top:4px;">Dossier <strong>${d.tracking_id}</strong> enregistré dans la base de données.</p>`;
+          gateBox.classList.remove("hidden");
+          gateMsg.textContent = `Conservez votre code ${d.tracking_id} pour consulter l'évolution de votre dossier sur le site.`;
+          unlocked.classList.add("hidden");
+        }
+
+        resBox.classList.remove("hidden");
+      }
+
+      // Admin Modal
+      function openAdmin() {
+        const cfg = getConfig();
+        document.getElementById("cfgUrl").value = cfg.url;
+        document.getElementById("cfgKey").value = cfg.key;
+        document.getElementById("cfgStatus").textContent = cfg.url && cfg.key
+          ? `Supabase lié (${cfg.url.replace("https://", "")})`
+          : "Supabase non configuré";
+        renderAdminList();
+        document.getElementById("adminModal").classList.remove("hidden");
+      }
+
+      function closeAdmin() {
+        document.getElementById("adminModal").classList.add("hidden");
+      }
+
+      function renderAdminList() {
+        const box = document.getElementById("adminDossiersContainer");
+        const list = loadDossiers();
+        if (!list.length) {
+          box.innerHTML = `<p style="font-size:0.85rem;color:var(--ink-muted);">Aucun dossier enregistré pour le moment.</p>`;
+          return;
+        }
+        box.innerHTML = list.map(d => `
+          <div style="border:1px solid var(--border-warm);background:var(--bg-cream);border-radius:var(--radius-md);padding:14px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;">
+            <div>
+              <strong>${d.tracking_id}</strong> — ${d.first_name} ${d.last_name} (${d.kitten_name})
+              <div style="font-size:0.78rem;color:var(--ink-muted);">
+                Approuvé : <strong>${d.approved ? "Oui" : "Non"}</strong> &bull;
+                Confirmé : <strong>${d.confirmed ? "Oui" : "Non"}</strong> &bull;
+                Payé : <strong>${d.paid ? "Oui" : "Non"}</strong>
+              </div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <button type="button" class="btn btn-secondary btn-sm" data-admin-op="approve" data-code="${d.tracking_id}">Approuver</button>
+              <button type="button" class="btn btn-amber btn-sm" data-admin-op="confirm" data-code="${d.tracking_id}">Confirmé</button>
+              <button type="button" class="btn btn-sage btn-sm" data-admin-op="paid" data-code="${d.tracking_id}">Payé</button>
+            </div>
+          </div>
+        `).join("");
+      }
+
+      async function runAdminOp(op, code) {
+        showDbNotice("adminDbNotice", "");
+        const list = loadDossiers();
+        const idx = list.findIndex(item => item.tracking_id === code);
+        if (idx === -1) return;
+
+        const patch = {};
+        if (op === "approve") patch.approved = true;
+        if (op === "confirm") { patch.approved = true; patch.confirmed = true; }
+        if (op === "paid") { patch.approved = true; patch.confirmed = true; patch.paid = true; }
+
+        list[idx] = { ...list[idx], ...patch };
+        saveDossiers(list);
+
+        const sbRes = await sbPatch(code, patch);
+        if (!sbRes.ok) {
+          showDbNotice("adminDbNotice", sbRes.error);
+        }
+
+        renderAdminList();
+        if (document.getElementById("trackingCodeInput").value.trim().toUpperCase() === code) {
+          lookupDossier(code);
+        }
+      }
+
+      // Sidebar Activity Toast
+      function initToasts() {
+        const msgs = [
+          "Céleste (Ragdoll) vient d'être réservé à Lyon.",
+          "Nouvelle candidature reçue pour Milo (Maine Coon).",
+          "Gaspard (Chartreux) a rejoint sa famille à Nantes.",
+          "Acompte réglé pour le chaton Ambre — livraison planifiée."
+        ];
+        let i = 0;
+        let closed = false;
+        const box = document.getElementById("toastBox");
+        const msgEl = document.getElementById("toastMessage");
+
+        document.getElementById("toastCloseBtn").addEventListener("click", () => {
+          closed = true;
+          box.classList.add("hidden");
+        });
+
+        function show() {
+          if (closed) return;
+          msgEl.textContent = msgs[i % msgs.length];
+          i++;
+          box.classList.remove("hidden");
+          setTimeout(() => box.classList.add("hidden"), 6500);
+        }
+
+        setTimeout(show, 4500);
+        setInterval(show, 25000);
+      }
+
+      // Init
+      document.addEventListener("DOMContentLoaded", () => {
+        renderKittens();
+        sbSyncAll();
+        initToasts();
+
+        document.getElementById("menuToggleBtn").addEventListener("click", () => {
+          const isHidden = document.getElementById("mobileDrawer").classList.contains("hidden");
+          if (isHidden) openDrawer(); else closeDrawer();
+        });
+        document.getElementById("drawerCloseBtn").addEventListener("click", closeDrawer);
+        document.getElementById("drawerBackdrop").addEventListener("click", closeDrawer);
+
+        document.getElementById("textSizeBtn").addEventListener("click", (e) => {
+          const large = document.documentElement.classList.toggle("large-text");
+          e.currentTarget.textContent = large ? "Texte normal" : "Grand texte";
+        });
+
+        document.getElementById("openAdminDrawerBtn").addEventListener("click", () => { closeDrawer(); openAdmin(); });
+        document.getElementById("openAdminTrackingBtn").addEventListener("click", openAdmin);
+        document.getElementById("openAdminFooterBtn").addEventListener("click", openAdmin);
+        document.getElementById("closeAdminBtn").addEventListener("click", closeAdmin);
+
+        document.getElementById("configForm").addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const cfg = {
+            url: document.getElementById("cfgUrl").value.trim(),
+            key: document.getElementById("cfgKey").value.trim()
+          };
+          localStorage.setItem(CONFIG_KEY, JSON.stringify(cfg));
+          await sbSyncAll();
+          renderAdminList();
+          document.getElementById("cfgStatus").textContent = "Paramètres enregistrés";
+        });
+
+        document.getElementById("applicationForm").addEventListener("submit", onApplicationSubmit);
+        document.getElementById("trackingForm").addEventListener("submit", (e) => {
+          e.preventDefault();
+          lookupDossier(document.getElementById("trackingCodeInput").value);
+        });
+        document.getElementById("printDocsBtn").addEventListener("click", () => window.print());
+
+        document.getElementById("contactForm").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const name = document.getElementById("cntName").value.trim();
+          const code = document.getElementById("cntCode").value.trim();
+          const msg = document.getElementById("cntMessage").value.trim();
+          window.location.href = `mailto:maisonpourchats@gmail.com?subject=${encodeURIComponent("Message - " + (code || name))}&body=${encodeURIComponent("Nom : " + name + "\nCode de suivi : " + code + "\n\n" + msg)}`;
+        });
+
+        document.getElementById("whatsappBtn").addEventListener("click", () => {
+          window.open("https://wa.me/33748258522?text=" + encodeURIComponent("Bonjour L'élevage des petits félins, je souhaite des informations."), "_blank", "noopener,noreferrer");
+        });
+
+        document.body.addEventListener("click", (e) => {
+          const nav = e.target.closest("[data-nav]");
+          if (nav) {
+            e.preventDefault();
+            navigateTo(nav.getAttribute("data-nav"));
+            return;
+          }
+
+          const filter = e.target.closest("[data-filter]");
+          if (filter) {
+            currentFilter = filter.getAttribute("data-filter");
+            document.querySelectorAll(".filter-btn").forEach(b => b.classList.toggle("active", b.getAttribute("data-filter") === currentFilter));
+            renderKittens();
+            return;
+          }
+
+          const sel = e.target.closest("[data-select-kitten]");
+          if (sel) {
+            selectKitten(sel.getAttribute("data-select-kitten"));
+            return;
+          }
+
+          const adminOp = e.target.closest("[data-admin-op]");
+          if (adminOp) {
+            runAdminOp(adminOp.getAttribute("data-admin-op"), adminOp.getAttribute("data-code"));
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
         { id: "LPF-K27", name
 </html>
