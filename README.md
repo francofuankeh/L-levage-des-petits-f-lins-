@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>L'élevage des petits félins — Chatterie Familiale en France</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -15,453 +14,1109 @@
       --ink-dark: #231F20;
       --ink-muted: #57534E;
       --accent-amber: #9A5B25;
+      --accent-amber-soft: #FEF3C7;
       --accent-sage: #2E5A44;
+      --accent-sage-soft: #DCFCE7;
       --border-warm: #E6DFD5;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
     }
-    html { scroll-behavior: smooth; font-size: 16px; }
-    html.large-text { font-size: 18.5px; }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    html.large-text {
+      font-size: 18.5px;
+    }
+
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--bg-cream);
       color: var(--ink-dark);
       line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
     }
-    h1, h2, h3, .font-serif-display {
+
+    h1, h2, h3, h4, .font-serif {
       font-family: 'Cormorant Garamond', Georgia, serif;
+      margin: 0;
+      color: var(--ink-dark);
     }
+
+    p { margin: 0; }
+
+    .hidden { display: none !important; }
+    .pointer-events-none { pointer-events: none !important; }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    @media (min-width: 640px) {
+      .container { padding: 0 24px; }
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(250, 248, 245, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-warm);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 76px;
+    }
+
+    .brand-btn {
+      background: none;
+      border: none;
+      padding: 6px 0;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .brand-title {
+      display: block;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--ink-dark);
+    }
+    @media (min-width: 640px) {
+      .brand-title { font-size: 2rem; }
+    }
+
+    .brand-sub {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+    }
+
+    .desktop-nav {
+      display: none;
+      align-items: center;
+      gap: 6px;
+    }
+    @media (min-width: 1024px) {
+      .desktop-nav { display: flex; }
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: var(--radius-sm);
+      padding: 8px 14px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ink-dark);
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .nav-btn:hover {
+      background: #EFEAE2;
+    }
+
     .nav-btn.active {
-      background-color: #231F20;
+      background: var(--ink-dark);
       color: #FFFFFF;
     }
-    .receipt-paper {
-      background: #FFFDF9;
-      border: 1px dashed #B8AFA6;
-      font-family: 'Courier New', Courier, monospace;
-      max-width: 390px;
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: var(--radius-md);
+      padding: 10px 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--ink-dark);
+      color: #FFFFFF;
+      border-color: var(--ink-dark);
+    }
+    .btn-primary:hover { background: #3A3436; }
+
+    .btn-secondary {
+      background: var(--card-white);
+      color: var(--ink-dark);
+      border-color: #D6CEC2;
+    }
+    .btn-secondary:hover { background: #F3EFE9; }
+
+    .btn-sage {
+      background: var(--accent-sage);
+      color: #FFFFFF;
+      border-color: var(--accent-sage);
+    }
+    .btn-sage:hover { background: #234635; }
+
+    .btn-amber {
+      background: var(--accent-amber);
+      color: #FFFFFF;
+      border-color: var(--accent-amber);
+    }
+    .btn-amber:hover { background: #7E491B; }
+
+    .btn-sm {
+      padding: 7px 12px;
+      font-size: 0.8rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .btn-lg {
+      padding: 13px 22px;
+      font-size: 0.98rem;
+    }
+
+    .btn-full { width: 100%; }
+
+    .btn:disabled {
+      background: #E5E7EB;
+      color: #6B7280;
+      border-color: #D1D5DB;
+      cursor: not-allowed;
+    }
+
+    /* Drawer */
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 50;
+    }
+
+    .drawer-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 320px;
+      max-width: 88vw;
+      background: var(--card-white);
+      border-left: 1px solid var(--border-warm);
+      z-index: 55;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: -8px 0 28px rgba(0, 0, 0, 0.12);
+    }
+
+    .drawer-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .drawer-link {
+      width: 100%;
+      text-align: left;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      background: transparent;
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink-dark);
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .drawer-link:hover {
+      background: #F4EFE8;
+    }
+
+    /* Main Sections */
+    .main-area {
+      padding: 32px 0 64px;
+    }
+    @media (min-width: 640px) {
+      .main-area { padding: 48px 0 80px; }
+    }
+
+    .card {
+      background: var(--card-white);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+    @media (min-width: 640px) {
+      .card { padding: 32px; }
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+    @media (min-width: 960px) {
+      .hero-grid { grid-template-columns: 1.25fr 1fr; }
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .badge-amber {
+      background: var(--accent-amber-soft);
+      color: var(--accent-amber);
+    }
+
+    .badge-green {
+      background: var(--accent-sage-soft);
+      color: var(--accent-sage);
+      border: 1px solid #86EFAC;
+    }
+
+    .badge-dark {
+      background: #27272A;
+      color: #FFFFFF;
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+      line-height: 1.15;
+      font-weight: 700;
+      margin-top: 12px;
+    }
+    @media (min-width: 640px) {
+      .hero-title { font-size: 3.1rem; }
+    }
+
+    .hero-img-wrap {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-warm);
+      aspect-ratio: 4 / 3;
+      background: #F3EFE9;
+    }
+
+    .hero-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 28px;
+    }
+    @media (min-width: 768px) {
+      .steps-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* Inventory */
+    .section-head {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-warm);
+      margin-bottom: 24px;
+    }
+    @media (min-width: 768px) {
+      .section-head {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+    }
+
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-btn {
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid #D6CEC2;
+      background: var(--card-white);
+      color: var(--ink-dark);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .filter-btn.active {
+      background: var(--ink-dark);
+      color: #FFFFFF;
+      border-color: var(--ink-dark);
+    }
+
+    .kitten-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+    @media (min-width: 640px) {
+      .kitten-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .kitten-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .kitten-card {
+      background: var(--card-white);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .kitten-img-box {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      background: #F3EFE9;
+    }
+
+    .kitten-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .kitten-img-box .badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+    }
+
+    .kitten-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+      gap: 16px;
+    }
+
+    .kitten-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .kitten-meta {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-amber);
+      margin-top: 2px;
+    }
+
+    .kitten-desc {
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+      margin-top: 8px;
+    }
+
+    .kitten-footer {
+      border-top: 1px solid var(--border-warm);
+      padding-top: 14px;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .progress-track {
+      height: 8px;
+      background: #E5E7EB;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 6px 0 12px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #52525B;
+    }
+
+    /* Forms */
+    .narrow-wrap {
+      max-width: 780px;
       margin: 0 auto;
     }
+
+    .wide-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 640px) {
+      .form-grid-2 { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid #D6CEC2;
+      background: var(--bg-cream);
+      color: var(--ink-dark);
+      font-family: inherit;
+      font-size: 0.92rem;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      outline: none;
+      background: #FFFFFF;
+      border-color: var(--ink-dark);
+    }
+
+    .selected-box {
+      background: #FFFBEB;
+      border: 1px solid #FDE68A;
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    @media (min-width: 640px) {
+      .selected-box {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .alert-success {
+      background: #F0FDF4;
+      border: 1px solid #86EFAC;
+      color: #14532D;
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-top: 20px;
+    }
+
+    .alert-warn {
+      background: #FFFBEB;
+      border: 1px solid #FCD34D;
+      color: #78350F;
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .alert-error {
+      background: #FEF2F2;
+      border: 1px solid #FCA5A5;
+      color: #991B1B;
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-top: 12px;
+      font-size: 0.9rem;
+    }
+
+    /* Tracking & Receipt */
+    .lookup-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    @media (min-width: 640px) {
+      .lookup-row { flex-direction: row; }
+    }
+
+    .lookup-row input {
+      flex: 1;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid #D6CEC2;
+      background: var(--bg-cream);
+      font-family: monospace;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      background: var(--bg-cream);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      font-size: 0.9rem;
+      margin: 20px 0;
+    }
+    @media (min-width: 640px) {
+      .summary-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .maps-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 16px;
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-md);
+      margin-bottom: 20px;
+    }
+    @media (min-width: 640px) {
+      .maps-bar {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .unlocked-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-items: start;
+      margin-top: 20px;
+    }
+    @media (min-width: 900px) {
+      .unlocked-grid { grid-template-columns: 390px 1fr; }
+    }
+
+    .receipt-paper {
+      background: #FFFDF9;
+      border: 1px dashed #9CA3AF;
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: #1C1917;
+    }
+
+    .receipt-divider {
+      border-bottom: 1px dashed #9CA3AF;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+
+    .doc-card {
+      background: var(--card-white);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: var(--card-white);
+      border-top: 1px solid var(--border-warm);
+      padding: 28px 0;
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    @media (min-width: 640px) {
+      .footer-inner { flex-direction: row; }
+    }
+
+    /* Live Toast */
+    .toast-box {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      z-index: 35;
+      max-width: 320px;
+      background: var(--card-white);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+      font-size: 0.8rem;
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 60;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-card {
+      background: var(--card-white);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-lg);
+      max-width: 780px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 24px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.22);
+    }
+
     @media print {
       body * { visibility: hidden; }
-      #printableDossierArea, #printableDossierArea * { visibility: visible; }
-      #printableDossierArea { position: absolute; left: 0; top: 0; width: 100%; }
+      #printableArea, #printableArea * { visibility: visible; }
+      #printableArea { position: absolute; left: 0; top: 0; width: 100%; }
     }
   </style>
   <script>
-    // Optional: set your production keys directly here OR via the "Administration Élevage" panel on the site
     window.APP_CONFIG = {
-      SUPABASE_URL: "",       // ex: "https://votre-projet.supabase.co"
-      SUPABASE_ANON_KEY: "",  // ex: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-      EMAIL_WEBHOOK_URL: "/api/send-email"
+      SUPABASE_URL: "",
+      SUPABASE_ANON_KEY: "",
+      EMAIL_WEBHOOK_URL: ""
     };
   </script>
 </head>
-<body class="antialiased selection:bg-amber-200/60">
+<body>
 
-  <!-- TOP HEADER -->
-  <header class="sticky top-0 z-40 bg-[#FAF8F5]/95 backdrop-blur border-b border-[#E6DFD5]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-3">
-      <button type="button" data-nav="home" class="text-left focus:outline-none">
-        <span class="block font-serif-display text-2xl sm:text-3xl font-bold tracking-tight text-[#231F20]">
-          L'élevage des petits félins
-        </span>
-        <span class="block text-xs text-[#57534E] tracking-wide">
-          Chatterie familiale &bull; Accompagnement personnalisé en France
-        </span>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <button type="button" class="brand-btn" data-nav="home">
+        <span class="brand-title">L'élevage des petits félins</span>
+        <span class="brand-sub">Chatterie familiale &bull; Accompagnement en France</span>
       </button>
 
-      <!-- Desktop Navigation -->
-      <nav class="hidden lg:flex items-center gap-1.5" aria-label="Navigation principale">
-        <button type="button" data-nav="home" class="nav-btn active px-3.5 py-2 rounded-lg text-sm font-semibold transition-colors">Accueil</button>
-        <button type="button" data-nav="inventory" class="nav-btn px-3.5 py-2 rounded-lg text-sm font-semibold text-[#231F20] hover:bg-stone-200/70 transition-colors">Nos chatons</button>
-        <button type="button" data-nav="application" class="nav-btn px-3.5 py-2 rounded-lg text-sm font-semibold text-[#231F20] hover:bg-stone-200/70 transition-colors">Candidature</button>
-        <button type="button" data-nav="tracking" class="nav-btn px-3.5 py-2 rounded-lg text-sm font-semibold text-[#231F20] hover:bg-stone-200/70 transition-colors">Suivi &amp; Dossier</button>
-        <button type="button" data-nav="contact" class="nav-btn px-3.5 py-2 rounded-lg text-sm font-semibold text-[#231F20] hover:bg-stone-200/70 transition-colors">Paiement &amp; Contact</button>
+      <nav class="desktop-nav" aria-label="Navigation principale">
+        <button type="button" class="nav-btn active" data-nav="home">Accueil</button>
+        <button type="button" class="nav-btn" data-nav="inventory">Nos chatons</button>
+        <button type="button" class="nav-btn" data-nav="application">Candidature</button>
+        <button type="button" class="nav-btn" data-nav="tracking">Suivi &amp; Dossier</button>
+        <button type="button" class="nav-btn" data-nav="contact">Paiement &amp; Contact</button>
       </nav>
 
-      <!-- Accessibility + Menu Controls -->
-      <div class="flex items-center gap-2">
-        <button type="button" id="textSizeToggle" class="px-3 py-2 rounded-lg border border-[#D6CEC2] bg-white text-xs sm:text-sm font-semibold text-[#231F20] hover:bg-stone-100" title="Agrandir la taille du texte">
-          Grand texte
-        </button>
-        <button type="button" id="menuToggleBtn" aria-expanded="false" aria-controls="mobileDrawer" class="px-3.5 py-2 rounded-lg bg-[#231F20] text-white text-sm font-semibold flex items-center gap-2 hover:bg-stone-800">
-          <span>Menu</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <div class="header-actions">
+        <button type="button" id="textSizeBtn" class="btn btn-secondary btn-sm">Grand texte</button>
+        <button type="button" id="menuToggleBtn" class="btn btn-primary btn-sm" aria-expanded="false" aria-controls="mobileDrawer">
+          Menu &#9776;
         </button>
       </div>
     </div>
   </header>
 
-  <!-- SLIDE-OUT NAVIGATION DRAWER -->
-  <div id="drawerBackdrop" class="fixed inset-0 bg-black/40 z-50 hidden pointer-events-none"></div>
-  <aside id="mobileDrawer" class="fixed top-0 right-0 h-full w-80 max-w-[88vw] bg-white z-50 border-l border-[#E6DFD5] shadow-2xl p-6 flex flex-col justify-between hidden pointer-events-none" aria-label="Menu latéral">
+  <!-- DRAWER -->
+  <div id="drawerBackdrop" class="drawer-backdrop hidden pointer-events-none"></div>
+  <aside id="mobileDrawer" class="drawer-panel hidden pointer-events-none" aria-label="Menu latéral">
     <div>
-      <div class="flex items-center justify-between pb-4 border-b border-[#E6DFD5]">
-        <span class="font-serif-display text-xl font-bold">Menu principal</span>
-        <button type="button" id="drawerCloseBtn" class="px-3 py-1.5 rounded-lg border border-[#D6CEC2] text-sm font-semibold hover:bg-stone-100">Fermer</button>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid var(--border-warm);">
+        <h2 style="font-size:1.5rem;">Menu</h2>
+        <button type="button" id="drawerCloseBtn" class="btn btn-secondary btn-sm">Fermer</button>
       </div>
-      <div class="mt-5 flex flex-col gap-2">
-        <button type="button" data-nav="home" class="w-full text-left px-4 py-3 rounded-xl font-semibold hover:bg-stone-100">1. Accueil &amp; Présentation</button>
-        <button type="button" data-nav="inventory" class="w-full text-left px-4 py-3 rounded-xl font-semibold hover:bg-stone-100">2. Nos chatons</button>
-        <button type="button" data-nav="application" class="w-full text-left px-4 py-3 rounded-xl font-semibold hover:bg-stone-100">3. Formulaire de candidature</button>
-        <button type="button" data-nav="tracking" class="w-full text-left px-4 py-3 rounded-xl font-semibold hover:bg-stone-100">4. Suivi &amp; Documents DTV</button>
-        <button type="button" data-nav="contact" class="w-full text-left px-4 py-3 rounded-xl font-semibold hover:bg-stone-100">5. Paiement &amp; Contact</button>
+      <div class="drawer-list">
+        <button type="button" class="drawer-link" data-nav="home">Accueil &amp; Présentation</button>
+        <button type="button" class="drawer-link" data-nav="inventory">Nos chatons</button>
+        <button type="button" class="drawer-link" data-nav="application">Formulaire de candidature</button>
+        <button type="button" class="drawer-link" data-nav="tracking">Suivi &amp; Documents DTV</button>
+        <button type="button" class="drawer-link" data-nav="contact">Paiement &amp; Contact</button>
       </div>
     </div>
-    <div class="pt-4 border-t border-[#E6DFD5] space-y-3">
-      <button type="button" id="openAdminFromDrawer" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 text-xs font-semibold text-stone-700 hover:bg-stone-100">
+    <div style="padding-top:16px;border-top:1px solid var(--border-warm);">
+      <button type="button" id="openAdminDrawerBtn" class="btn btn-secondary btn-sm btn-full" style="margin-bottom:12px;">
         Administration Élevage (Supabase)
       </button>
-      <p class="text-xs text-[#57534E]">
-        Assistance directe :<br>
-        <strong class="text-[#231F20]">+33 7 48 25 85 22</strong><br>
+      <p style="font-size:0.78rem;color:var(--ink-muted);">
+        <strong>+33 7 48 25 85 22</strong><br>
         maisonpourchats@gmail.com
       </p>
     </div>
   </aside>
 
   <!-- MAIN CONTENT -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-16">
+  <main class="container main-area">
 
-    <!-- SECTION 1: ACCUEIL -->
-    <section id="sec-home" class="page-section space-y-10">
-      <div class="bg-white border border-[#E6DFD5] rounded-2xl p-6 sm:p-10 lg:p-12 grid lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-7 space-y-5">
-          <span class="inline-block px-3 py-1 rounded-full bg-amber-100/80 text-[#9A5B25] text-xs font-bold uppercase tracking-wider">
-            Élevage familial agréé &bull; Socialisation douce
-          </span>
-          <h1 class="text-3xl sm:text-5xl font-bold leading-tight text-[#231F20]">
-            Des compagnons équilibrés, élevés au cœur de notre foyer.
-          </h1>
-          <p class="text-base sm:text-lg text-[#57534E] max-w-2xl">
-            Chaque chaton grandit entouré d'attention, habitué aux bruits de la maison et suivi par notre vétérinaire avant de rejoindre sa famille partout en France.
-          </p>
-          <div class="flex flex-wrap gap-3 pt-2">
-            <button type="button" data-nav="inventory" class="px-6 py-3.5 rounded-xl bg-[#231F20] text-white font-semibold text-sm sm:text-base hover:bg-stone-800">
-              Découvrir nos chatons
-            </button>
-            <button type="button" data-nav="tracking" class="px-6 py-3.5 rounded-xl border border-[#231F20] bg-white text-[#231F20] font-semibold text-sm sm:text-base hover:bg-stone-100">
-              Suivre mon dossier
-            </button>
-          </div>
-        </div>
-        <div class="lg:col-span-5">
-          <div class="rounded-2xl overflow-hidden border border-[#E6DFD5] bg-stone-100 aspect-[4/3]">
-            <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=900&q=80" alt="Chaton de l'élevage des petits félins" class="w-full h-full object-cover" />
-          </div>
-        </div>
-      </div>
-
-      <!-- 3-Step Adoption Process -->
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="bg-white border border-[#E6DFD5] rounded-2xl p-6 space-y-2">
-          <span class="text-xs font-bold uppercase tracking-wider text-[#9A5B25]">Étape 1</span>
-          <h2 class="text-2xl font-bold">Choix &amp; Candidature</h2>
-          <p class="text-sm text-[#57534E]">Sélectionnez le chaton qui correspond à votre foyer et remplissez le questionnaire d'accueil pour recevoir votre numéro de suivi.</p>
-        </div>
-        <div class="bg-white border border-[#E6DFD5] rounded-2xl p-6 space-y-2">
-          <span class="text-xs font-bold uppercase tracking-wider text-[#9A5B25]">Étape 2</span>
-          <h2 class="text-2xl font-bold">Validation &amp; Acompte</h2>
-          <p class="text-sm text-[#57534E]">Après étude de votre dossier, vous recevez l'e-mail d'approbation. Le règlement de l'acompte débloque vos documents officiels et verrouille la réservation.</p>
-        </div>
-        <div class="bg-white border border-[#E6DFD5] rounded-2xl p-6 space-y-2">
-          <span class="text-xs font-bold uppercase tracking-wider text-[#9A5B25]">Étape 3</span>
-          <h2 class="text-2xl font-bold">Livraison &amp; Remise</h2>
-          <p class="text-sm text-[#57534E]">Les fichiers PDF en ligne servent d'aperçu officiel ; l'ensemble des originaux papier signés vous est remis en main propre lors de la livraison.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 2: NOS CHATONS (INVENTORY) -->
-    <section id="sec-inventory" class="page-section hidden space-y-6">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#E6DFD5] pb-5">
+    <!-- 1. ACCUEIL -->
+    <section id="sec-home" class="page-section">
+      <div class="card hero-grid">
         <div>
-          <h2 class="text-3xl sm:text-4xl font-bold">Nos chatons</h2>
-          <p class="text-sm sm:text-base text-[#57534E] mt-1">
-            Consultez les fiches individuelles, les tempéraments et les tarifs. Un acompte est demandé pour toute réservation définitive.
+          <span class="badge badge-amber">Élevage familial &bull; Socialisation en maison</span>
+          <h1 class="hero-title">Des chatons équilibrés, élevés avec soin au cœur de notre foyer.</h1>
+          <p style="color:var(--ink-muted);margin-top:14px;font-size:1rem;">
+            Chaque chaton grandit entouré d'attention, habitué à la vie quotidienne et suivi attentivement avant de rejoindre sa nouvelle famille partout en France.
           </p>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;">
+            <button type="button" class="btn btn-primary btn-lg" data-nav="inventory">Découvrir nos chatons</button>
+            <button type="button" class="btn btn-secondary btn-lg" data-nav="tracking">Suivre mon dossier</button>
+          </div>
         </div>
-        <div class="flex flex-wrap gap-2" role="group" aria-label="Filtrer les chatons">
-          <button type="button" data-filter="all" class="filter-btn px-3.5 py-2 rounded-lg bg-[#231F20] text-white text-xs sm:text-sm font-semibold">Tous</button>
-          <button type="button" data-filter="available" class="filter-btn px-3.5 py-2 rounded-lg bg-white border border-[#D6CEC2] text-xs sm:text-sm font-semibold">Disponibles</button>
-          <button type="button" data-filter="pending" class="filter-btn px-3.5 py-2 rounded-lg bg-white border border-[#D6CEC2] text-xs sm:text-sm font-semibold">Prochainement</button>
-          <button type="button" data-filter="adopted" class="filter-btn px-3.5 py-2 rounded-lg bg-white border border-[#D6CEC2] text-xs sm:text-sm font-semibold">Adoptés</button>
+        <div class="hero-img-wrap">
+          <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=900&q=80" alt="Chaton de l'élevage des petits félins" />
         </div>
       </div>
 
-      <div id="kittenGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      <div class="steps-grid">
+        <div class="card">
+          <span class="badge badge-amber">Étape 1</span>
+          <h2 style="font-size:1.65rem;margin-top:10px;">Candidature détaillée</h2>
+          <p style="color:var(--ink-muted);font-size:0.9rem;margin-top:8px;">
+            Choisissez un chaton et présentez votre foyer (type de logement, intérieur ou extérieur, enfants, autres animaux) pour obtenir votre numéro de suivi.
+          </p>
+        </div>
+        <div class="card">
+          <span class="badge badge-amber">Étape 2</span>
+          <h2 style="font-size:1.65rem;margin-top:10px;">Approbation &amp; Acompte</h2>
+          <p style="color:var(--ink-muted);font-size:0.9rem;margin-top:8px;">
+            Une fois votre dossier approuvé et confirmé, le règlement de l'acompte débloque l'accès en ligne au Bon de livraison, au Certificat et au Livret d'accueil.
+          </p>
+        </div>
+        <div class="card">
+          <span class="badge badge-amber">Étape 3</span>
+          <h2 style="font-size:1.65rem;margin-top:10px;">Livraison &amp; Originaux</h2>
+          <p style="color:var(--ink-muted);font-size:0.9rem;margin-top:8px;">
+            Les documents téléchargeables en ligne servent d'exemplaire numérique ; les originaux papier signés vous sont remis en main propre lors de la livraison.
+          </p>
+        </div>
+      </div>
     </section>
 
-    <!-- SECTION 3: FORMULAIRE DE CANDIDATURE -->
-    <section id="sec-application" class="page-section hidden max-w-3xl mx-auto space-y-6">
-      <div class="bg-white border border-[#E6DFD5] rounded-2xl p-6 sm:p-8 space-y-6">
-        <div class="border-b border-[#E6DFD5] pb-4">
-          <span class="text-xs font-bold uppercase tracking-wider text-[#9A5B25]">Dossier d'adoption</span>
-          <h2 class="text-3xl font-bold mt-1">Formulaire de candidature</h2>
-          <p class="text-sm text-[#57534E] mt-1">
-            Ces informations nous permettent de vérifier la bonne adéquation entre votre cadre de vie et les besoins du chaton.
+    <!-- 2. NOS CHATONS -->
+    <section id="sec-inventory" class="page-section hidden">
+      <div class="section-head">
+        <div>
+          <h2 style="font-size:2.3rem;">Nos chatons</h2>
+          <p style="color:var(--ink-muted);font-size:0.92rem;margin-top:4px;">
+            Parcourez nos portées et tarifs. Un acompte est demandé pour confirmer la réservation.
+          </p>
+        </div>
+        <div class="filter-group" role="group" aria-label="Filtrer les chatons">
+          <button type="button" class="filter-btn active" data-filter="all">Tous</button>
+          <button type="button" class="filter-btn" data-filter="available">Disponibles</button>
+          <button type="button" class="filter-btn" data-filter="pending">Prochainement</button>
+          <button type="button" class="filter-btn" data-filter="adopted">Adoptés</button>
+        </div>
+      </div>
+      <div id="kittenGrid" class="kitten-grid"></div>
+    </section>
+
+    <!-- 3. CANDIDATURE -->
+    <section id="sec-application" class="page-section hidden">
+      <div class="narrow-wrap card">
+        <div style="padding-bottom:16px;border-bottom:1px solid var(--border-warm);margin-bottom:20px;">
+          <span class="badge badge-amber">Questionnaire d'accueil</span>
+          <h2 style="font-size:2.2rem;margin-top:8px;">Formulaire de candidature</h2>
+          <p style="color:var(--ink-muted);font-size:0.9rem;margin-top:4px;">
+            Merci de renseigner vos coordonnées et votre environnement de vie afin que nous préparions l'accueil du chaton.
           </p>
         </div>
 
-        <div id="selectedKittenBanner" class="p-4 rounded-xl bg-amber-50 border border-amber-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="selected-box">
           <div>
-            <span class="text-xs font-bold uppercase text-[#9A5B25]">Chaton sélectionné</span>
-            <p id="selectedKittenLabel" class="font-bold text-base text-[#231F20]">Aucun chaton choisi — sélectionnez-en un dans la liste</p>
-            <p id="selectedKittenPriceNote" class="text-xs text-[#57534E]"></p>
+            <span style="font-size:0.75rem;font-weight:700;text-transform:uppercase;color:var(--accent-amber);">Chaton sélectionné</span>
+            <p id="selectedKittenTitle" style="font-weight:700;font-size:1rem;margin-top:2px;">Aucun chaton sélectionné — choisissez-en un dans Nos chatons</p>
+            <p id="selectedKittenSub" style="font-size:0.8rem;color:var(--ink-muted);margin-top:2px;"></p>
           </div>
-          <button type="button" data-nav="inventory" class="px-3.5 py-2 rounded-lg bg-white border border-amber-300 text-xs font-semibold text-[#231F20] hover:bg-amber-100">
-            Changer de chaton
-          </button>
+          <button type="button" class="btn btn-secondary btn-sm" data-nav="inventory">Choisir un chaton</button>
         </div>
 
-        <form id="applicationForm" class="space-y-5">
-          <input type="hidden" id="appKittenId" name="kittenId" />
+        <form id="applicationForm">
+          <input type="hidden" id="appKittenId" />
 
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div>
-              <label for="appFirstName" class="block text-sm font-semibold mb-1">Prénom *</label>
-              <input id="appFirstName" type="text" required placeholder="Ex. Claire" class="w-full px-3.5 py-2.5 rounded-xl border border-[#D6CEC2] bg-[#FAF8F5] focus:bg-white focus:outline-none focus:border-[#231F20]" />
+          <div class="form-grid-2">
+            <div class="field">
+              <label for="appFirstName">Prénom *</label>
+              <input id="appFirstName" type="text" required placeholder="Ex. Camille" />
             </div>
-            <div>
-              <label for="appLastName" class="block text-sm font-semibold mb-1">Nom de famille *</label>
-              <input id="appLastName" type="text" required placeholder="Ex. Moreau" class="w-full px-3.5 py-2.5 rounded-xl border border-[#D6CEC2] bg-[#FAF8F5] focus:bg-white focus:outline-none focus:border-[#231F20]" />
-            </div>
-          </div>
-
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div>
-              <label for="appEmail" class="block text-sm font-semibold mb-1">Adresse e-mail *</label>
-              <input id="appEmail" type="email" required placeholder="claire.moreau@exemple.fr" class="w-full px-3.5 py-2.5 rounded-xl border border-[#D6CEC2] bg-[#FAF8F5] focus:bg-white focus:outline-none focus:border-[#231F20]" />
-            </div>
-            <div>
-              <label for="appPhone" class="block text-sm font-semibold mb-1">Téléphone (WhatsApp / Mobile) *</label>
-              <input id="appPhone" type="tel" required placeholder="+33 6 12 34 56 78" class="w-full px-3.5 py-2.5 rounded-xl border border-[#D6CEC2] bg-[#FAF8F5] focus:bg-white focus:outline-none focus:border-[#231F20]" />
+            <div class="field">
+              <label for="appLastName">Nom de famille *</label>
+              <input id="appLastName" type="text" required placeholder="Ex. Bernard" />
             </div>
           </div>
 
-          <div>
-            <label for="appAddress" class="block text-sm font-semibold mb-1">Ville, code postal &amp; adresse de livraison souhaitée *</label>
-            <input id="appAddress" type="text" required placeholder="Ex. 14 Rue des Lilas, 69003 Lyon" class="w-full px-3.5 py-2.5 rounded-xl border border-[#D6CEC2] bg-[#FAF8F5] focus:bg-white focus:outline-none focus:border-[#231F20]" />
+          <div class="form-grid-2">
+            <div class="field">
+              <label for="appEmail">Adresse e-mail *</label>
+              <input id="appEmail" type="email" required placeholder="camille.bernard@exemple.fr" />
+            </div>
+            <div class="field">
+              <label for="appPhone">Téléphone (Mobile / WhatsApp) *</label>
+              <input id="appPhone" type="tel" required placeholder="+33 6 12 34 56 78" />
+            </div>
           </div>
 
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div>
-              <label for="appHousingType" class="block text-sm font-semibold mb-1">Type de logement *</label>
-              <select id="appHousingType" required class="w-full px-3.5 py-2.5 rounded-xl border border-[#D6CEC2] bg-[#FAF8F5] focus:bg-white">
+          <div class="field">
+            <label for="appAddress">Adresse complète de livraison (rue, code postal, ville) *</label>
+            <input id="appAddress" type="text" required placeholder="Ex. 24 Avenue Victor Hugo, 33000 Bordeaux" />
+          </div>
+
+          <div class="form-grid-2">
+            <div class="field">
+              <label for="appHousingType">Type de logement *</label>
+              <select id="appHousingType" required>
                 <option value="Appartement">Appartement</option>
                 <option value="Maison individuelle">Maison individuelle</option>
-                <option value="Maison de ville avec cour">Maison de ville avec cour</option>
+                <option value="Maison avec extérieur clos">Maison avec extérieur clos</option>
               </select>
             </div>
-            <div>
-              <label for="appIndoorOutdoor" class="block text-sm font-semibold mb-1">Mode de vie prévu *</label>
-              <select id="appIndoorOutdoor" required class="w-full px-3.5 py-2.5 rounded-xl border border-[#D6CEC2] bg-[#FAF8F5] focus:bg-white">
-                <option value="Intérieur exclusivement">Intérieur exclusivement</option>
-                <option value="Intérieur avec balcon / terrasse sécurisée">Intérieur avec balcon / terrasse sécurisée</option>
-                <option value="Accès jardin clos et sécurisé">Accès jardin clos et sécurisé</option>
+            <div class="field">
+              <label for="appLifestyle">Mode de vie prévu (intérieur / extérieur) *</label>
+              <select id="appLifestyle" required>
+                <option value="Intérieur uniquement">Intérieur uniquement</option>
+                <option value="Intérieur + balcon ou terrasse sécurisée">Intérieur + balcon ou terrasse sécurisée</option>
+                <option value="Intérieur + jardin clos et sécurisé">Intérieur + jardin clos et sécurisé</option>
               </select>
             </div>
           </div>
 
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div>
-              <label for="appChildren" class="block text-sm font-semibold mb-1">Enfants au foyer *</label>
-              <select id="appChildren" required class="w-full px-3.5 py-2.5 rounded-xl border border-[#D6CEC2] bg-[#FAF8F5] focus:bg-white">
-                <option value="Aucun enfant">Aucun enfant</option>
-                <option value="Enfants de moins de 6 ans">Enfants de moins de 6 ans</option>
-                <option value="Enfants de 6 à 14 ans">Enfants de 6 à 14 ans</option>
-                <option value="Adolescents (15 ans et plus)">Adolescents (15 ans et plus)</option>
+          <div class="form-grid-2">
+            <div class="field">
+              <label for="appKids">Y a-t-il des enfants à la maison ? *</label>
+              <select id="appKids" required>
+                <option value="Non, aucun enfant">Non, aucun enfant</option>
+                <option value="Oui, jeunes enfants (moins de 6 ans)">Oui, jeunes enfants (moins de 6 ans)</option>
+                <option value="Oui, enfants (6 à 14 ans)">Oui, enfants (6 à 14 ans)</option>
+                <option value="Oui, adolescents (15 ans et plus)">Oui, adolescents (15 ans et plus)</option>
               </select>
             </div>
-            <div>
-              <label for="appOtherPets" class="block text-sm font-semibold mb-1">Autres animaux à la maison *</label>
-              <select id="appOtherPets" required class="w-full px-3.5 py-2.5 rounded-xl border border-[#D6CEC2] bg-[#FAF8F5] focus:bg-white">
+            <div class="field">
+              <label for="appOtherPets">Y a-t-il d'autres animaux au foyer ? *</label>
+              <select id="appOtherPets" required>
                 <option value="Aucun autre animal">Aucun autre animal</option>
-                <option value="Un ou plusieurs chats">Un ou plusieurs chats</option>
-                <option value="Un chien habitué aux chats">Un chien habitué aux chats</option>
-                <option value="Autre petit compagnon">Autre petit compagnon</option>
+                <option value="Oui, un ou plusieurs chats">Oui, un ou plusieurs chats</option>
+                <option value="Oui, un chien">Oui, un chien</option>
+                <option value="Oui, autre petit animal">Oui, autre petit animal</option>
               </select>
             </div>
           </div>
 
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div>
-              <label for="appDeliveryMode" class="block text-sm font-semibold mb-1">Mode de remise souhaité *</label>
-              <select id="appDeliveryMode" required class="w-full px-3.5 py-2.5 rounded-xl border border-[#D6CEC2] bg-[#FAF8F5] focus:bg-white">
-                <option value="Transporteur animalier agréé DTV à domicile">Transporteur animalier agréé DTV à domicile</option>
-                <option value="Retrait sur rendez-vous à la chatterie">Retrait sur rendez-vous à la chatterie</option>
+          <div class="form-grid-2">
+            <div class="field">
+              <label for="appDeliveryMode">Mode de remise souhaité *</label>
+              <select id="appDeliveryMode" required>
+                <option value="Livraison à domicile par transporteur animalier DTV">Livraison à domicile par transporteur animalier DTV</option>
+                <option value="Remise en main propre à la chatterie">Remise en main propre à la chatterie</option>
               </select>
             </div>
-            <div>
-              <label for="appPaymentMethod" class="block text-sm font-semibold mb-1">Mode de règlement privilégié *</label>
-              <select id="appPaymentMethod" required class="w-full px-3.5 py-2.5 rounded-xl border border-[#D6CEC2] bg-[#FAF8F5] focus:bg-white">
-                <option value="Virement bancaire SEPA (Acompte + Solde à la livraison)">Virement bancaire SEPA (Acompte + Solde à la livraison)</option>
-                <option value="Lien carte sécurisé (Acompte + Solde à la livraison)">Lien carte sécurisé (Acompte + Solde à la livraison)</option>
+            <div class="field">
+              <label for="appPaymentMethod">Mode de règlement *</label>
+              <select id="appPaymentMethod" required>
+                <option value="Virement bancaire (Acompte + Solde à la livraison)">Virement bancaire (Acompte + Solde à la livraison)</option>
+                <option value="Paiement par carte (Acompte + Solde à la livraison)">Paiement par carte (Acompte + Solde à la livraison)</option>
               </select>
             </div>
           </div>
 
-          <div>
-            <label for="appNotes" class="block text-sm font-semibold mb-1">Parlez-nous de votre foyer &amp; de vos disponibilités</label>
-            <textarea id="appNotes" rows="3" placeholder="Présence en journée, créneau idéal pour l'accueil..." class="w-full px-3.5 py-2.5 rounded-xl border border-[#D6CEC2] bg-[#FAF8F5] focus:bg-white focus:outline-none focus:border-[#231F20]"></textarea>
+          <div class="field">
+            <label for="appNotes">Précisions sur votre foyer ou vos disponibilités</label>
+            <textarea id="appNotes" rows="3" placeholder="Décrivez votre quotidien, votre disponibilité ou vos questions..."></textarea>
           </div>
 
-          <button type="submit" class="w-full py-3.5 rounded-xl bg-[#231F20] text-white font-semibold text-base hover:bg-stone-800">
-            Envoyer ma candidature &amp; générer mon numéro de suivi
+          <button type="submit" class="btn btn-primary btn-lg btn-full">
+            Valider ma candidature &amp; obtenir mon numéro de suivi
           </button>
         </form>
 
-        <!-- Confirmation box after submission -->
-        <div id="applicationSuccessBox" class="hidden p-5 rounded-xl bg-emerald-50 border border-emerald-200 space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold uppercase tracking-wider text-emerald-800">Candidature enregistrée &bull; E-mail de bienvenue #1 envoyé</span>
-          </div>
-          <p class="text-sm text-emerald-950">
-            Votre numéro d'identification de suivi est : <strong id="generatedTrackingId" class="text-lg font-mono"></strong>
+        <div id="appSuccessBox" class="alert-success hidden">
+          <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">
+            Candidature enregistrée &bull; E-mail de bienvenue #1 envoyé
           </p>
-          <p id="welcomeEmailPreview" class="text-xs text-emerald-900 bg-white/80 p-3 rounded-lg border border-emerald-200 whitespace-pre-line"></p>
-          <button type="button" id="goToMyTrackingBtn" class="px-4 py-2.5 rounded-lg bg-emerald-800 text-white text-sm font-semibold hover:bg-emerald-900">
-            Accéder à mon espace de suivi
+          <p style="margin-top:6px;font-size:0.95rem;">
+            Votre numéro de dossier : <strong id="generatedCode" style="font-family:monospace;font-size:1.1rem;"></strong>
+          </p>
+          <p id="welcomeSummary" style="margin-top:8px;font-size:0.84rem;background:#FFFFFF;padding:12px;border-radius:8px;border:1px solid #BBF7D0;white-space:pre-line;"></p>
+          <button type="button" id="openTrackingFromSuccessBtn" class="btn btn-sage btn-sm" style="margin-top:12px;">
+            Consulter mon suivi
           </button>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 4: SUIVI & DOSSIER OFFICIEL -->
-    <section id="sec-tracking" class="page-section hidden max-w-4xl mx-auto space-y-6">
-      <div class="bg-white border border-[#E6DFD5] rounded-2xl p-6 sm:p-8 space-y-6">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E6DFD5] pb-4">
+    <!-- 4. SUIVI & DOSSIER -->
+    <section id="sec-tracking" class="page-section hidden">
+      <div class="wide-wrap card">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--border-warm);margin-bottom:20px;">
           <div>
-            <h2 class="text-3xl font-bold">Suivi d'adoption &amp; Documents officiels</h2>
-            <p class="text-sm text-[#57534E] mt-1">Saisissez votre numéro de suivi (ex. LPF-8421) pour consulter l'avancement de votre dossier.</p>
+            <h2 style="font-size:2.3rem;">Suivi de dossier &amp; Documents</h2>
+            <p style="color:var(--ink-muted);font-size:0.9rem;margin-top:4px;">
+              Saisissez votre numéro d'identification (ex. LPF-4821) pour consulter l'état de votre dossier.
+            </p>
           </div>
-          <button type="button" id="openAdminFromTracking" class="px-3.5 py-2 rounded-lg border border-stone-300 text-xs font-semibold text-stone-700 hover:bg-stone-100 self-start">
+          <button type="button" id="openAdminTrackingBtn" class="btn btn-secondary btn-sm">
             Administration Élevage
           </button>
         </div>
 
-        <form id="trackingLookupForm" class="flex flex-col sm:flex-row gap-3">
-          <input id="trackingInput" type="text" required placeholder="Entrez votre numéro de dossier (ex. LPF-XXXX)" class="flex-1 px-4 py-3 rounded-xl border border-[#D6CEC2] bg-[#FAF8F5] font-mono uppercase focus:bg-white focus:outline-none focus:border-[#231F20]" />
-          <button type="submit" class="px-6 py-3 rounded-xl bg-[#231F20] text-white font-semibold hover:bg-stone-800">
-            Rechercher mon dossier
-          </button>
+        <form id="trackingForm" class="lookup-row">
+          <input id="trackingCodeInput" type="text" required placeholder="Numéro de dossier (ex. LPF-XXXX)" />
+          <button type="submit" class="btn btn-primary">Rechercher</button>
         </form>
 
-        <div id="trackingError" class="hidden p-4 rounded-xl bg-red-50 border border-red-200 text-sm text-red-800"></div>
+        <div id="trackingError" class="alert-error hidden"></div>
 
-        <!-- Result Container -->
-        <div id="trackingResult" class="hidden space-y-6">
-          <!-- Status Banner -->
-          <div id="trackingStatusBanner" class="p-5 rounded-xl border space-y-2"></div>
+        <div id="trackingResult" class="hidden" style="margin-top:22px;">
+          <div id="trackingBanner" class="alert-warn"></div>
 
-          <!-- Summary Grid -->
-          <div class="grid sm:grid-cols-2 gap-4 bg-[#FAF8F5] p-5 rounded-xl border border-[#E6DFD5] text-sm">
-            <div><span class="text-[#57534E]">Adoptant :</span> <strong id="trkAdopter"></strong></div>
-            <div><span class="text-[#57534E]">Chaton :</span> <strong id="trkKitten"></strong></div>
-            <div><span class="text-[#57534E]">Destination :</span> <strong id="trkAddress"></strong></div>
-            <div><span class="text-[#57534E]">Tarif &amp; Acompte :</span> <strong id="trkPricing"></strong></div>
-            <div><span class="text-[#57534E]">Date de livraison prévue :</span> <strong id="trkDeliveryDate"></strong></div>
-            <div><span class="text-[#57534E]">Mode de transport :</span> <strong id="trkTransport"></strong></div>
+          <div class="summary-grid">
+            <div><span style="color:var(--ink-muted);">Adoptant :</span> <strong id="trkClient"></strong></div>
+            <div><span style="color:var(--ink-muted);">Chaton :</span> <strong id="trkKitten"></strong></div>
+            <div><span style="color:var(--ink-muted);">Adresse de livraison :</span> <strong id="trkAddress"></strong></div>
+            <div><span style="color:var(--ink-muted);">Montants :</span> <strong id="trkAmounts"></strong></div>
+            <div><span style="color:var(--ink-muted);">Date prévue :</span> <strong id="trkDate"></strong></div>
+            <div><span style="color:var(--ink-muted);">Remise :</span> <strong id="trkMode"></strong></div>
           </div>
 
-          <!-- Phone Maps Launcher -->
-          <div class="p-4 rounded-xl bg-white border border-[#E6DFD5] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="maps-bar">
             <div>
-              <p class="font-semibold text-sm">Itinéraire vers votre domicile</p>
-              <p class="text-xs text-[#57534E]">Ouvrez directement l'adresse de livraison dans l'application Plans ou Google Maps de votre téléphone.</p>
+              <p style="font-weight:700;font-size:0.9rem;">Itinéraire vers votre domicile</p>
+              <p style="font-size:0.8rem;color:var(--ink-muted);">Ouvrir l'adresse de livraison dans l'application Plans ou Google Maps de votre téléphone.</p>
             </div>
-            <a id="openPhoneMapsLink" href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-[#2E5A44] text-white text-xs sm:text-sm font-semibold text-center hover:bg-emerald-900">
+            <a id="mapsAppLink" href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="btn btn-sage btn-sm">
               Ouvrir dans Plans / Google Maps
             </a>
           </div>
 
-          <!-- GATED DOCUMENTS AREA -->
-          <div id="documentsGateNotice" class="p-5 rounded-xl bg-amber-50 border border-amber-300 space-y-3">
-            <h3 class="text-xl font-bold text-amber-950">Accès au Bon de livraison, Livret d'accueil &amp; Certificat</h3>
-            <p id="documentsGateText" class="text-sm text-amber-900"></p>
-            <div class="flex flex-wrap gap-3">
-              <button type="button" data-nav="contact" class="px-4 py-2.5 rounded-xl bg-[#9A5B25] text-white text-sm font-semibold hover:bg-amber-800">
-                Procéder au règlement de l'acompte
-              </button>
+          <div id="gateBox" class="alert-warn">
+            <h3 style="font-size:1.45rem;">Bon de livraison, Livret d'accueil &amp; Certificat</h3>
+            <p id="gateMessage" style="font-size:0.88rem;margin-top:6px;"></p>
+            <div style="margin-top:12px;">
+              <button type="button" class="btn btn-amber btn-sm" data-nav="contact">Voir les informations de paiement</button>
             </div>
           </div>
 
-          <!-- UNLOCKED DOCUMENTS (Shown ONLY when confirmed === true AND paid === true) -->
-          <div id="unlockedDocumentsSection" class="hidden space-y-6">
-            <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div id="unlockedDocs" class="hidden" style="margin-top:20px;">
+            <div class="alert-success" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;">
               <div>
-                <p class="font-bold text-sm text-emerald-950">Documents débloqués — Aperçu numérique</p>
-                <p class="text-xs text-emerald-900">
-                  Ces fichiers PDF constituent votre exemplaire numérique. Les originaux papier signés vous seront remis en main propre le jour de la livraison.
+                <p style="font-weight:700;font-size:0.92rem;">Documents disponibles (Exemplaire numérique)</p>
+                <p style="font-size:0.8rem;margin-top:2px;">
+                  Le PDF téléchargé ou imprimé est un exemplaire numérique : les originaux papier signés vous sont remis en main propre le jour de la livraison.
                 </p>
               </div>
-              <button type="button" id="printReceiptBtn" class="px-4 py-2.5 rounded-xl bg-[#231F20] text-white text-xs sm:text-sm font-semibold hover:bg-stone-800">
-                Imprimer / Enregistrer en PDF
-              </button>
+              <button type="button" id="printDocsBtn" class="btn btn-primary btn-sm">Télécharger / Imprimer PDF</button>
             </div>
 
-            <div id="printableDossierArea" class="grid lg:grid-cols-12 gap-6 items-start">
-              <!-- TALL COURIER RECEIPT PAPER (Bon de livraison) -->
-              <div class="lg:col-span-5 receipt-paper p-5 rounded-lg shadow-sm text-xs text-stone-900 space-y-3">
-                <div class="text-center border-b border-dashed border-stone-400 pb-3">
-                  <p class="font-bold text-sm uppercase tracking-wider">L'ÉLEVAGE DES PETITS FÉLINS</p>
-                  <p>BON DE LIVRAISON &amp; TRANSPORT DTV</p>
-                  <p class="mt-1 font-bold" id="rcptRef"></p>
-                  <p class="tracking-widest text-[10px] mt-1">||||| || |||| ||| ||||| || ||||</p>
+            <div id="printableArea" class="unlocked-grid">
+              <!-- Long Receipt-Style Delivery Slip -->
+              <div class="receipt-paper">
+                <div class="receipt-divider" style="text-align:center;">
+                  <div style="font-weight:700;font-size:0.92rem;">L'ÉLEVAGE DES PETITS FÉLINS</div>
+                  <div>BON DE LIVRAISON — TRANSPORT DTV</div>
+                  <div id="rcptId" style="font-weight:700;margin-top:4px;"></div>
+                  <div style="letter-spacing:2px;font-size:0.65rem;margin-top:4px;">||| ||| || ||||| ||| || ||||</div>
                 </div>
-                <div class="space-y-1 border-b border-dashed border-stone-400 pb-3">
-                  <p><strong>EXPÉDITEUR :</strong> Chatterie LPF (France)</p>
-                  <p><strong>DESTINATAIRE :</strong> <span id="rcptClient"></span></p>
-                  <p><strong>TÉLÉPHONE :</strong> <span id="rcptPhone"></span></p>
-                  <p><strong>ADRESSE :</strong> <span id="rcptAddress"></span></p>
+                <div class="receipt-divider">
+                  <div><strong>EXPÉDITEUR :</strong> L'élevage des petits félins</div>
+                  <div><strong>DESTINATAIRE :</strong> <span id="rcptName"></span></div>
+                  <div><strong>TÉLÉPHONE :</strong> <span id="rcptPhone"></span></div>
+                  <div><strong>ADRESSE :</strong> <span id="rcptAddr"></span></div>
                 </div>
-                <div class="space-y-1 border-b border-dashed border-stone-400 pb-3">
-                  <p><strong>CHATON :</strong> <span id="rcptKitten"></span></p>
-                  <p><strong>IDENTIFICATION :</strong> Puce électronique + Passeport EU</p>
-                  <p><strong>DATE PROGRAMMÉE :</strong> <span id="rcptDate"></span></p>
-                  <p><strong>CRÉNEAU :</strong> 09h00 – 13h00 (Appel 30 min avant)</p>
+                <div class="receipt-divider">
+                  <div><strong>CHATON :</strong> <span id="rcptKitten"></span></div>
+                  <div><strong>DATE LIVRAISON :</strong> <span id="rcptDate"></span></div>
+                  <div><strong>MODE :</strong> <span id="rcptDeliveryMode"></span></div>
                 </div>
-                <div class="space-y-1 border-b border-dashed border-stone-400 pb-3">
-                  <p><strong>MODE :</strong> <span id="rcptPayMethod"></span></p>
-                  <p><strong>PRIX TOTAL :</strong> <span id="rcptTotal"></span></p>
-                  <p><strong>ACOMPTE RÉGLÉ :</strong> <span id="rcptDeposit"></span> [PAYÉ]</p>
-                  <p><strong>SOLDE À LA LIVRAISON :</strong> <span id="rcptBalance"></span></p>
+                <div class="receipt-divider">
+                  <div><strong>RÈGLEMENT :</strong> <span id="rcptPayMode"></span></div>
+                  <div><strong>PRIX TOTAL :</strong> <span id="rcptTotal"></span></div>
+                  <div><strong>ACOMPTE :</strong> <span id="rcptDeposit"></span> (RÉGLÉ)</div>
+                  <div><strong>SOLDE À LA LIVRAISON :</strong> <span id="rcptBalance"></span></div>
                 </div>
-                <div class="space-y-1 border-b border-dashed border-stone-400 pb-3">
-                  <p class="font-bold">DOCUMENTS ORIGINAUX REMIS :</p>
-                  <p>[X] Certificat vétérinaire de bonne santé</p>
-                  <p>[X] Carnet de santé &amp; primo-vaccination</p>
-                  <p>[X] Attestation de cession originale</p>
-                  <p>[X] Livret d'accueil imprimé</p>
+                <div class="receipt-divider">
+                  <div style="font-weight:700;">ORIGINAUX REMIS EN MAIN PROPRE :</div>
+                  <div>[X] Certificat vétérinaire original</div>
+                  <div>[X] Carnet de santé &amp; vaccination</div>
+                  <div>[X] Attestation de cession signée</div>
+                  <div>[X] Livret d'accueil imprimé</div>
                 </div>
-                <div class="pt-2 space-y-4">
-                  <p class="text-[11px]">Exemplaire numérique. Les originaux papier signés accompagnent le chaton à la livraison.</p>
-                  <div class="grid grid-cols-2 gap-3 pt-2">
+                <div style="font-size:0.72rem;">
+                  <p>Aperçu numérique — Originaux papier remis à la livraison.</p>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;">
                     <div>
-                      <p class="text-[10px]">Signature Élevage / Convoyeur :</p>
-                      <div class="h-10 border-b border-stone-500 italic pt-3">L'élevage LPF</div>
+                      <div>Signature Élevage :</div>
+                      <div style="border-bottom:1px solid #57534E;height:28px;font-style:italic;padding-top:6px;">L'élevage LPF</div>
                     </div>
                     <div>
-                      <p class="text-[10px]">Signature Adoptant :</p>
-                      <div class="h-10 border-b border-stone-500"></div>
+                      <div>Signature Adoptant :</div>
+                      <div style="border-bottom:1px solid #57534E;height:28px;"></div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <!-- LIVRET D'ACCUEIL & CERTIFICAT D'ADOPTION -->
-              <div class="lg:col-span-7 space-y-5">
-                <div class="bg-white border border-[#E6DFD5] rounded-xl p-5 space-y-2">
-                  <span class="text-xs font-bold uppercase text-[#9A5B25]">Document 2 &bull; Aperçu numérique</span>
-                  <h3 class="text-2xl font-bold">Certificat de Réservation &amp; d'Adoption</h3>
-                  <p class="text-sm text-[#57534E]" id="certBodyText"></p>
+              <!-- Certificate & Welcome Booklet -->
+              <div>
+                <div class="doc-card">
+                  <span class="badge badge-amber">Certificat</span>
+                  <h3 style="font-size:1.65rem;margin-top:8px;">Certificat d'Adoption &amp; de Réservation</h3>
+                  <p id="certText" style="color:var(--ink-muted);font-size:0.9rem;margin-top:8px;"></p>
                 </div>
-                <div class="bg-white border border-[#E6DFD5] rounded-xl p-5 space-y-2">
-                  <span class="text-xs font-bold uppercase text-[#2E5A44]">Document 3 &bull; Guide pratique</span>
-                  <h3 class="text-2xl font-bold">Livret d'accueil du chaton</h3>
-                  <ul class="text-sm text-[#57534E] list-disc pl-5 space-y-1.5">
-                    <li><strong>Les 48 premières heures :</strong> Installez le chaton dans une pièce calme avec sa litière, son eau fraîche et ses croquettes habituelles (transition progressive sur 10 jours).</li>
-                    <li><strong>Suivi vétérinaire :</strong> Rappels de vaccins et vermifuge indiqués dans le carnet original remis lors de la livraison.</li>
-                    <li><strong>Assistance à vie :</strong> Notre équipe reste disponible au +33 7 48 25 85 22 pour toute question d'adaptation.</li>
+                <div class="doc-card">
+                  <span class="badge badge-green">Livret d'accueil</span>
+                  <h3 style="font-size:1.65rem;margin-top:8px;">Livret d'accueil du chaton</h3>
+                  <ul style="color:var(--ink-muted);font-size:0.88rem;padding-left:18px;margin:8px 0 0;line-height:1.7;">
+                    <li><strong>Installation :</strong> Préparez un coin calme avec litière, gamelles d'eau et de nourriture à distance.</li>
+                    <li><strong>Alimentation :</strong> Maintenez l'alimentation habituelle les premiers jours avant toute transition progressive.</li>
+                    <li><strong>Suivi :</strong> Conservez les documents originaux remis le jour de la livraison pour votre vétérinaire.</li>
                   </ul>
                 </div>
               </div>
@@ -471,817 +1126,666 @@
       </div>
     </section>
 
-    <!-- SECTION 5: PAIEMENT & CONTACT -->
-    <section id="sec-contact" class="page-section hidden max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
-      <div class="bg-white border border-[#E6DFD5] rounded-2xl p-6 sm:p-8 space-y-4">
-        <span class="text-xs font-bold uppercase tracking-wider text-[#9A5B25]">Règlement sécurisé</span>
-        <h2 class="text-3xl font-bold">Acompte &amp; Solde à la livraison</h2>
-        <p class="text-sm text-[#57534E]">
-          Pour valider définitivement votre réservation et débloquer vos documents officiels en ligne, un acompte est requis après approbation de votre candidature. Le <strong>solde à la livraison</strong> correspond au montant restant dû lors de la remise du chaton.
-        </p>
-        <div class="p-4 rounded-xl bg-[#FAF8F5] border border-[#E6DFD5] space-y-2 text-sm">
-          <p><strong>Titulaire :</strong> L'élevage des petits félins</p>
-          <p><strong>Référence à indiquer :</strong> Votre numéro de dossier (ex. LPF-XXXX)</p>
-          <p><strong>Contact règlement &amp; RIB :</strong> maisonpourchats@gmail.com</p>
-          <p><strong>WhatsApp direct :</strong> +33 7 48 25 85 22</p>
+    <!-- 5. PAIEMENT & CONTACT -->
+    <section id="sec-contact" class="page-section hidden">
+      <div class="wide-wrap steps-grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:0;">
+        <div class="card">
+          <span class="badge badge-amber">Règlement</span>
+          <h2 style="font-size:2rem;margin-top:8px;">Acompte &amp; Solde à la livraison</h2>
+          <p style="color:var(--ink-muted);font-size:0.9rem;margin-top:10px;">
+            Le règlement de l'acompte valide votre réservation et débloque vos documents officiels dans l'espace de suivi. Le <strong>solde à la livraison</strong> correspond au reste du montant réglé lors de la remise du chaton.
+          </p>
+          <div style="background:var(--bg-cream);border:1px solid var(--border-warm);border-radius:var(--radius-md);padding:14px;margin-top:16px;font-size:0.88rem;">
+            <p><strong>Élevage :</strong> L'élevage des petits félins</p>
+            <p style="margin-top:4px;"><strong>Référence :</strong> Votre numéro LPF-XXXX</p>
+            <p style="margin-top:4px;"><strong>E-mail :</strong> maisonpourchats@gmail.com</p>
+            <p style="margin-top:4px;"><strong>Téléphone / WhatsApp :</strong> +33 7 48 25 85 22</p>
+          </div>
         </div>
-      </div>
 
-      <div class="bg-white border border-[#E6DFD5] rounded-2xl p-6 sm:p-8 space-y-4">
-        <span class="text-xs font-bold uppercase tracking-wider text-[#2E5A44]">Nous écrire</span>
-        <h2 class="text-3xl font-bold">Contacter la chatterie</h2>
-        <form id="contactForm" class="space-y-4">
-          <div>
-            <label for="cntName" class="block text-sm font-semibold mb-1">Votre nom *</label>
-            <input id="cntName" type="text" required class="w-full px-3.5 py-2.5 rounded-xl border border-[#D6CEC2] bg-[#FAF8F5]" />
-          </div>
-          <div>
-            <label for="cntRef" class="block text-sm font-semibold mb-1">Numéro de dossier (optionnel)</label>
-            <input id="cntRef" type="text" placeholder="LPF-XXXX" class="w-full px-3.5 py-2.5 rounded-xl border border-[#D6CEC2] bg-[#FAF8F5]" />
-          </div>
-          <div>
-            <label for="cntMessage" class="block text-sm font-semibold mb-1">Votre message *</label>
-            <textarea id="cntMessage" rows="3" required class="w-full px-3.5 py-2.5 rounded-xl border border-[#D6CEC2] bg-[#FAF8F5]"></textarea>
-          </div>
-          <div class="flex flex-wrap gap-2.5">
-            <button type="submit" class="px-5 py-2.5 rounded-xl bg-[#231F20] text-white text-sm font-semibold hover:bg-stone-800">
-              Envoyer par e-mail
-            </button>
-            <button type="button" id="whatsappDirectBtn" class="px-5 py-2.5 rounded-xl bg-[#2E5A44] text-white text-sm font-semibold hover:bg-emerald-900">
-              Ouvrir WhatsApp
-            </button>
-          </div>
-        </form>
+        <div class="card">
+          <span class="badge badge-green">Contact</span>
+          <h2 style="font-size:2rem;margin-top:8px;">Écrire à la chatterie</h2>
+          <form id="contactForm" style="margin-top:14px;">
+            <div class="field">
+              <label for="cntName">Votre nom *</label>
+              <input id="cntName" type="text" required />
+            </div>
+            <div class="field">
+              <label for="cntCode">Numéro de dossier (facultatif)</label>
+              <input id="cntCode" type="text" placeholder="LPF-XXXX" />
+            </div>
+            <div class="field">
+              <label for="cntMessage">Message *</label>
+              <textarea id="cntMessage" rows="3" required></textarea>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+              <button type="submit" class="btn btn-primary">Envoyer par e-mail</button>
+              <button type="button" id="whatsappBtn" class="btn btn-sage">WhatsApp</button>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
 
   </main>
 
   <!-- FOOTER -->
-  <footer class="border-t border-[#E6DFD5] bg-white mt-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#57534E]">
-      <p>&copy; 2026 L'élevage des petits félins — Tous droits réservés.</p>
-      <div class="flex items-center gap-4">
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 L'élevage des petits félins</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;">
         <span>maisonpourchats@gmail.com</span>
         <span>+33 7 48 25 85 22</span>
-        <button type="button" id="openAdminFromFooter" class="underline hover:text-[#231F20]">Administration</button>
+        <button type="button" id="openAdminFooterBtn" style="background:none;border:none;color:inherit;text-decoration:underline;cursor:pointer;font-size:inherit;font-family:inherit;">
+          Administration
+        </button>
       </div>
     </div>
   </footer>
 
-  <!-- NON-INTRUSIVE BOTTOM-RIGHT LIVE ACTIVITY TOAST -->
-  <div id="liveActivityToast" class="fixed bottom-4 right-4 z-30 max-w-xs bg-white border border-[#E6DFD5] shadow-lg rounded-xl p-3.5 text-xs hidden">
-    <div class="flex items-start justify-between gap-2">
+  <!-- LIVE TOAST -->
+  <div id="toastBox" class="toast-box hidden">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
       <div>
-        <span class="inline-block w-2 h-2 rounded-full bg-emerald-600 mr-1.5"></span>
-        <span class="font-bold text-[#231F20]">Activité de la chatterie</span>
-        <p id="liveActivityText" class="text-[#57534E] mt-1"></p>
+        <strong>Activité récente</strong>
+        <p id="toastMessage" style="color:var(--ink-muted);margin-top:4px;"></p>
       </div>
-      <button type="button" id="dismissToastBtn" class="text-stone-400 hover:text-stone-700 font-bold px-1" aria-label="Fermer">&times;</button>
+      <button type="button" id="toastCloseBtn" style="background:none;border:none;font-size:1.1rem;cursor:pointer;color:#78716C;line-height:1;">&times;</button>
     </div>
   </div>
 
-  <!-- BREEDER ADMINISTRATION MODAL (SUPABASE + VERIFICATION CONTROLS) -->
-  <div id="adminModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden pointer-events-none">
-    <div class="bg-white border border-[#E6DFD5] rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 space-y-6 shadow-2xl">
-      <div class="flex items-center justify-between border-b border-[#E6DFD5] pb-3">
-        <h3 class="text-2xl font-bold">Administration Élevage &amp; Supabase</h3>
-        <button type="button" id="closeAdminModalBtn" class="px-3 py-1.5 rounded-lg border border-stone-300 text-sm font-semibold hover:bg-stone-100">Fermer</button>
+  <!-- ADMIN MODAL -->
+  <div id="adminModal" class="modal-backdrop hidden pointer-events-none">
+    <div class="modal-card">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid var(--border-warm);">
+        <h2 style="font-size:1.85rem;">Administration Élevage</h2>
+        <button type="button" id="closeAdminBtn" class="btn btn-secondary btn-sm">Fermer</button>
       </div>
 
-      <!-- Supabase & Vercel Credentials Form -->
-      <form id="supabaseConfigForm" class="bg-[#FAF8F5] p-4 rounded-xl border border-[#E6DFD5] space-y-3">
-        <p class="text-xs font-bold uppercase text-[#9A5B25]">Connexion Base de données Supabase &amp; E-mails Vercel</p>
-        <div class="grid sm:grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-semibold mb-1">Supabase Project URL</label>
-            <input id="cfgSupabaseUrl" type="url" placeholder="https://xxxx.supabase.co" class="w-full px-3 py-2 rounded-lg border border-stone-300 bg-white text-xs" />
+      <form id="configForm" style="background:var(--bg-cream);border:1px solid var(--border-warm);border-radius:var(--radius-md);padding:16px;margin-top:16px;">
+        <p style="font-size:0.76rem;font-weight:700;text-transform:uppercase;color:var(--accent-amber);margin-bottom:10px;">
+          Paramètres Supabase &amp; E-mails
+        </p>
+        <div class="form-grid-2">
+          <div class="field" style="margin-bottom:10px;">
+            <label for="cfgUrl">Supabase URL</label>
+            <input id="cfgUrl" type="url" placeholder="https://votre-projet.supabase.co" />
           </div>
-          <div>
-            <label class="block text-xs font-semibold mb-1">Supabase Anon Public Key</label>
-            <input id="cfgSupabaseKey" type="text" placeholder="eyJhbGciOi..." class="w-full px-3 py-2 rounded-lg border border-stone-300 bg-white text-xs" />
+          <div class="field" style="margin-bottom:10px;">
+            <label for="cfgKey">Supabase Anon Key</label>
+            <input id="cfgKey" type="text" placeholder="eyJhbGciOi..." />
           </div>
         </div>
-        <div>
-          <label class="block text-xs font-semibold mb-1">Endpoint E-mails Vercel / Edge Function</label>
-          <input id="cfgEmailWebhook" type="text" placeholder="/api/send-email" class="w-full px-3 py-2 rounded-lg border border-stone-300 bg-white text-xs" />
+        <div class="field" style="margin-bottom:12px;">
+          <label for="cfgEmail">URL Webhook E-mails (optionnel)</label>
+          <input id="cfgEmail" type="text" placeholder="/api/send-email" />
         </div>
-        <div class="flex items-center justify-between gap-3">
-          <span id="supabaseStatusText" class="text-xs text-[#57534E]">Stockage local actif</span>
-          <button type="submit" class="px-4 py-2 rounded-lg bg-[#231F20] text-white text-xs font-semibold hover:bg-stone-800">
-            Enregistrer &amp; Synchroniser
-          </button>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;">
+          <span id="cfgStatus" style="font-size:0.8rem;color:var(--ink-muted);">Mode local actif</span>
+          <button type="submit" class="btn btn-primary btn-sm">Enregistrer</button>
         </div>
       </form>
 
-      <!-- Dossiers Management List -->
-      <div class="space-y-3">
-        <h4 class="text-lg font-bold">Dossiers enregistrés</h4>
-        <div id="adminDossiersList" class="space-y-3 text-sm"></div>
+      <div style="margin-top:20px;">
+        <h3 style="font-size:1.5rem;margin-bottom:10px;">Dossiers enregistrés</h3>
+        <div id="adminDossiersContainer" style="display:flex;flex-direction:column;gap:10px;"></div>
       </div>
     </div>
   </div>
 
   <script>
-    // =========================================================================
-    // 1. CATALOGUE DE 30 CHATONS (VARIÉS EN RACES, TEMPÉRAMENTS & TARIFS)
-    // =========================================================================
-    const KITTENS = [
-      { id: "LPF-K01", name: "Noisette", breed: "British Shorthair", age: "12 semaines", sex: "Femelle", price: 1150, status: "available", temperament: "Douce, calme et très câline", img: "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K02", name: "Céleste", breed: "Ragdoll", age: "13 semaines", sex: "Femelle", price: 1350, status: "available", temperament: "Pot-de-colle, adore les bras", img: "https://images.unsplash.com/photo-1513245543132-31f507417b26?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K03", name: "Milo", breed: "Maine Coon", age: "14 semaines", sex: "Mâle", price: 1450, status: "available", temperament: "Joueur, sociable avec les enfants", img: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K04", name: "Plume", breed: "Sacré de Birmanie", age: "12 semaines", sex: "Femelle", price: 1250, status: "available", temperament: "Paisible, ronronne au moindre regard", img: "https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K05", name: "Gaspard", breed: "Chartreux", age: "11 semaines", sex: "Mâle", price: 1100, status: "adopted", progress: 85, temperament: "Observateur et fidèle", img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K06", name: "Ambre", breed: "Sibérien", age: "12 semaines", sex: "Femelle", price: 1300, status: "available", temperament: "Vive, curieuse et très proche de l'humain", img: "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K07", name: "Sacha", breed: "Scottish Fold", age: "11 semaines", sex: "Mâle", price: 1200, status: "available", temperament: "Tranquille, apprécie la vie en appartement", img: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K08", name: "Iris", breed: "Bleu Russe", age: "13 semaines", sex: "Femelle", price: 1280, status: "available", temperament: "Élégante, discrète et affectueuse", img: "https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K09", name: "Léon", breed: "Européen Tigré", age: "10 semaines", sex: "Mâle", price: 450, status: "available", temperament: "Plein d'entrain et très attachant", img: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K10", name: "Perle", breed: "Persan Chinchilla", age: "13 semaines", sex: "Femelle", price: 1380, status: "pending", temperament: "Bilan vétérinaire en cours avant ouverture", img: "https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K11", name: "Oscar", breed: "Bengal", age: "14 semaines", sex: "Mâle", price: 1550, status: "available", temperament: "Athlétique, intelligent, aime les jeux", img: "https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K12", name: "Margot", breed: "British Longhair", age: "12 semaines", sex: "Femelle", price: 1220, status: "available", temperament: "Peluche vivante, très patiente", img: "https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K13", name: "Félix", breed: "Norvégien", age: "13 semaines", sex: "Mâle", price: 1320, status: "adopted", progress: 70, temperament: "Aventurier doux, adore grimper", img: "https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K14", name: "Capucine", breed: "Exotic Shorthair", age: "12 semaines", sex: "Femelle", price: 1180, status: "available", temperament: "Câline, calme, adore la sieste", img: "https://images.unsplash.com/photo-1571566882372-1598d88abd90?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K15", name: "Roméo", breed: "Ragdoll Bicolore", age: "14 semaines", sex: "Mâle", price: 1400, status: "available", temperament: "D'une grande douceur avec tous", img: "https://images.unsplash.com/photo-1548247416-ec66f4900b2e?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K16", name: "Zélie", breed: "Abyssin", age: "11 semaines", sex: "Femelle", price: 1260, status: "pending", temperament: "Prochainement disponible après primo-vaccination", img: "https://images.unsplash.com/photo-1529778873920-4da4926a72c2?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K17", name: "Simba", breed: "Maine Coon Roux", age: "15 semaines", sex: "Mâle", price: 1500, status: "available", temperament: "Majestueux, joueur et très proche de sa famille", img: "https://images.unsplash.com/photo-1501820488136-72669149e0d4?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K18", name: "Chloé", breed: "Européen Écaille de Tortue", age: "10 semaines", sex: "Femelle", price: 390, status: "available", temperament: "Malicieuse, propre et très sociable", img: "https://images.unsplash.com/photo-1511044568932-338cba0ad803?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K19", name: "Arthur", breed: "Chartreux", age: "12 semaines", sex: "Mâle", price: 1150, status: "available", temperament: "Équilibré, silencieux et fidèle", img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K20", name: "Louna", breed: "Sacré de Birmanie", age: "13 semaines", sex: "Femelle", price: 1290, status: "adopted", progress: 92, temperament: "Très tendre et bavarde", img: "https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K21", name: "Balthazar", breed: "British Shorthair Lilas", age: "12 semaines", sex: "Mâle", price: 1240, status: "available", temperament: "Nounours paisible et gourmand", img: "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K22", name: "Opaline", breed: "Angora Turc", age: "12 semaines", sex: "Femelle", price: 1080, status: "available", temperament: "Agile, gracieuse et affectueuse", img: "https://images.unsplash.com/photo-1513245543132-31f507417b26?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K23", name: "Pablo", breed: "Siamois Thaï", age: "11 semaines", sex: "Mâle", price: 980, status: "available", temperament: "Communicatif, fusionnel et joueur", img: "https://images.unsplash.com/photo-1548247416-ec66f4900b2e?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K24", name: "Mina", breed: "Sibérien Neva Masquerade", age: "13 semaines", sex: "Femelle", price: 1390, status: "pending", temperament: "En cours de sevrage, ouverture prochaine", img: "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K25", name: "Hector", breed: "Highland Fold", age: "12 semaines", sex: "Mâle", price: 1210, status: "available", temperament: "Doux, s'entend très bien avec les autres chats", img: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K26", name: "Agathe", breed: "Européen Blanc & Gris", age: "10 semaines", sex: "Femelle", price: 420, status: "available", temperament: "Tendresse infinie, idéale premier compagnon", img: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K27", name: "Ulysse", breed: "Maine Coon Brown Tabby", age: "14 semaines", sex: "Mâle", price: 1480, status: "adopted", progress: 65, temperament: "Calme et protecteur", img: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K28", name: "Solène", breed: "Ragdoll Blue Point", age: "13 semaines", sex: "Femelle", price: 1360, status: "available", temperament: "Sereine et habituée aux bruits du foyer", img: "https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K29", name: "César", breed: "Burmese", age: "12 semaines", sex: "Mâle", price: 1120, status: "available", temperament: "Sociable, curieux et très câlin", img: "https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=700&q=80" },
-      { id: "LPF-K30", name: "Étoile", breed: "Scottish Straight", age: "11 semaines", sex: "Femelle", price: 1090, status: "available", temperament: "Douceur et élégance au quotidien", img: "https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=700&q=80" }
-    ];
+    (function () {
+      const KITTENS = [
+        { id: "LPF-K01", name: "Noisette", breed: "British Shorthair", age: "12 sem.", sex: "Femelle", price: 1150, status: "available", desc: "Douce, calme et très proche de sa famille.", img: "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K02", name: "Céleste", breed: "Ragdoll", age: "13 sem.", sex: "Femelle", price: 1350, status: "available", desc: "Affectueuse, détendue et pleine de tendresse.", img: "https://images.unsplash.com/photo-1513245543132-31f507417b26?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K03", name: "Milo", breed: "Maine Coon", age: "14 sem.", sex: "Mâle", price: 1450, status: "available", desc: "Joueur, curieux et sociable.", img: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K04", name: "Plume", breed: "Sacré de Birmanie", age: "12 sem.", sex: "Femelle", price: 1250, status: "available", desc: "Paisible et attachante au quotidien.", img: "https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K05", name: "Gaspard", breed: "Chartreux", age: "11 sem.", sex: "Mâle", price: 1100, status: "adopted", progress: 85, desc: "Discret, équilibré et fidèle.", img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K06", name: "Ambre", breed: "Sibérien", age: "12 sem.", sex: "Femelle", price: 1300, status: "available", desc: "Vive, câline et très attentive.", img: "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K07", name: "Sacha", breed: "Scottish Fold", age: "11 sem.", sex: "Mâle", price: 1200, status: "available", desc: "Tranquille et bien adapté à la vie intérieure.", img: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K08", name: "Iris", breed: "Bleu Russe", age: "13 sem.", sex: "Femelle", price: 1280, status: "available", desc: "Élégante, douce et attachée à son foyer.", img: "https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K09", name: "Léon", breed: "Européen", age: "10 sem.", sex: "Mâle", price: 450, status: "available", desc: "Enjoué, propre et très proche de l'humain.", img: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K10", name: "Perle", breed: "Persan", age: "13 sem.", sex: "Femelle", price: 1380, status: "pending", desc: "Préparation vétérinaire en cours.", img: "https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K11", name: "Oscar", breed: "Bengal", age: "14 sem.", sex: "Mâle", price: 1550, status: "available", desc: "Dynamique et amateur de jeux.", img: "https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K12", name: "Margot", breed: "British Longhair", age: "12 sem.", sex: "Femelle", price: 1220, status: "available", desc: "Douceur et calme au quotidien.", img: "https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K13", name: "Félix", breed: "Norvégien", age: "13 sem.", sex: "Mâle", price: 1320, status: "adopted", progress: 70, desc: "Avenant et joueur.", img: "https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K14", name: "Capucine", breed: "Exotic Shorthair", age: "12 sem.", sex: "Femelle", price: 1180, status: "available", desc: "Calme et très câline.", img: "https://images.unsplash.com/photo-1571566882372-1598d88abd90?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K15", name: "Roméo", breed: "Ragdoll", age: "14 sem.", sex: "Mâle", price: 1400, status: "available", desc: "Sociable et serein.", img: "https://images.unsplash.com/photo-1548247416-ec66f4900b2e?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K16", name: "Zélie", breed: "Abyssin", age: "11 sem.", sex: "Femelle", price: 1260, status: "pending", desc: "Ouverture prochaine après contrôle.", img: "https://images.unsplash.com/photo-1529778873920-4da4926a72c2?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K17", name: "Simba", breed: "Maine Coon", age: "15 sem.", sex: "Mâle", price: 1500, status: "available", desc: "Affectueux et présent.", img: "https://images.unsplash.com/photo-1501820488136-72669149e0d4?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K18", name: "Chloé", breed: "Européen", age: "10 sem.", sex: "Femelle", price: 390, status: "available", desc: "Tendresse et vivacité.", img: "https://images.unsplash.com/photo-1511044568932-338cba0ad803?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K19", name: "Arthur", breed: "Chartreux", age: "12 sem.", sex: "Mâle", price: 1150, status: "available", desc: "Posé et attentif.", img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K20", name: "Louna", breed: "Sacré de Birmanie", age: "13 sem.", sex: "Femelle", price: 1290, status: "adopted", progress: 92, desc: "Douce et attachante.", img: "https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K21", name: "Balthazar", breed: "British Shorthair", age: "12 sem.", sex: "Mâle", price: 1240, status: "available", desc: "Paisible et gourmand.", img: "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K22", name: "Opaline", breed: "Angora Turc", age: "12 sem.", sex: "Femelle", price: 1080, status: "available", desc: "Souple et affectueuse.", img: "https://images.unsplash.com/photo-1513245543132-31f507417b26?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K23", name: "Pablo", breed: "Siamois", age: "11 sem.", sex: "Mâle", price: 980, status: "available", desc: "Expressif et proche de son foyer.", img: "https://images.unsplash.com/photo-1548247416-ec66f4900b2e?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K24", name: "Mina", breed: "Sibérien", age: "13 sem.", sex: "Femelle", price: 1390, status: "pending", desc: "Suivi en cours avant disponibilité.", img: "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K25", name: "Hector", breed: "Highland Fold", age: "12 sem.", sex: "Mâle", price: 1210, status: "available", desc: "Doux et sociable.", img: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K26", name: "Agathe", breed: "Européen", age: "10 sem.", sex: "Femelle", price: 420, status: "available", desc: "Câline et équilibrée.", img: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K27", name: "Ulysse", breed: "Maine Coon", age: "14 sem.", sex: "Mâle", price: 1480, status: "adopted", progress: 65, desc: "Calme et avenant.", img: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K28", name: "Solène", breed: "Ragdoll", age: "13 sem.", sex: "Femelle", price: 1360, status: "available", desc: "Sereine et douce.", img: "https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K29", name: "César", breed: "Burmese", age: "12 sem.", sex: "Mâle", price: 1120, status: "available", desc: "Curieux et câlin.", img: "https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=700&q=80" },
+        { id: "LPF-K30", name: "Étoile", breed: "Scottish Straight", age: "11 sem.", sex: "Femelle", price: 1090, status: "available", desc: "Calme et attachante.", img: "https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=700&q=80" }
+      ];
 
-    // =========================================================================
-    // 2. CONFIGURATION SUPABASE & ÉTAT LOCAL
-    // =========================================================================
-    const STORAGE_KEY_DOSSIERS = "lpf_dossiers_v1";
-    const STORAGE_KEY_CFG = "lpf_supabase_cfg_v1";
+      const DOSSIERS_KEY = "lpf_dossiers_single_v1";
+      const CONFIG_KEY = "lpf_cfg_single_v1";
+      let currentFilter = "all";
 
-    function getRuntimeConfig() {
-      let saved = {};
-      try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY_CFG) || "{}"); } catch (_) {}
-      return {
-        SUPABASE_URL: (saved.SUPABASE_URL || window.APP_CONFIG?.SUPABASE_URL || "").trim().replace(/\/$/, ""),
-        SUPABASE_ANON_KEY: (saved.SUPABASE_ANON_KEY || window.APP_CONFIG?.SUPABASE_ANON_KEY || "").trim(),
-        EMAIL_WEBHOOK_URL: (saved.EMAIL_WEBHOOK_URL || window.APP_CONFIG?.EMAIL_WEBHOOK_URL || "/api/send-email").trim()
-      };
-    }
-
-    function getLocalDossiers() {
-      try { return JSON.parse(localStorage.getItem(STORAGE_KEY_DOSSIERS) || "[]"); } catch (_) { return []; }
-    }
-
-    function saveLocalDossiers(list) {
-      localStorage.setItem(STORAGE_KEY_DOSSIERS, JSON.stringify(list));
-    }
-
-    function computeDeposit(totalPrice) {
-      return Math.round(totalPrice * 0.30);
-    }
-
-    // =========================================================================
-    // 3. APPELS SUPABASE REST & VERCEL E-MAILS
-    // =========================================================================
-    async function insertApplicationInSupabase(record) {
-      const cfg = getRuntimeConfig();
-      if (!cfg.SUPABASE_URL || !cfg.SUPABASE_ANON_KEY) return false;
-      try {
-        const res = await fetch(`${cfg.SUPABASE_URL}/rest/v1/applications`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "apikey": cfg.SUPABASE_ANON_KEY,
-            "Authorization": `Bearer ${cfg.SUPABASE_ANON_KEY}`,
-            "Prefer": "return=representation"
-          },
-          body: JSON.stringify(record)
-        });
-        return res.ok;
-      } catch (err) {
-        console.warn("Supabase insert fallback:", err);
-        return false;
-      }
-    }
-
-    async function fetchApplicationFromSupabase(trackingId) {
-      const cfg = getRuntimeConfig();
-      if (!cfg.SUPABASE_URL || !cfg.SUPABASE_ANON_KEY) return null;
-      try {
-        const res = await fetch(`${cfg.SUPABASE_URL}/rest/v1/applications?tracking_id=eq.${encodeURIComponent(trackingId)}&select=*`, {
-          headers: {
-            "apikey": cfg.SUPABASE_ANON_KEY,
-            "Authorization": `Bearer ${cfg.SUPABASE_ANON_KEY}`
-          }
-        });
-        if (!res.ok) return null;
-        const rows = await res.json();
-        return rows && rows.length ? rows[0] : null;
-      } catch (err) {
-        console.warn("Supabase fetch fallback:", err);
-        return null;
-      }
-    }
-
-    async function updateApplicationInSupabase(trackingId, patch) {
-      const cfg = getRuntimeConfig();
-      if (!cfg.SUPABASE_URL || !cfg.SUPABASE_ANON_KEY) return false;
-      try {
-        const res = await fetch(`${cfg.SUPABASE_URL}/rest/v1/applications?tracking_id=eq.${encodeURIComponent(trackingId)}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            "apikey": cfg.SUPABASE_ANON_KEY,
-            "Authorization": `Bearer ${cfg.SUPABASE_ANON_KEY}`
-          },
-          body: JSON.stringify(patch)
-        });
-        return res.ok;
-      } catch (err) {
-        console.warn("Supabase patch fallback:", err);
-        return false;
-      }
-    }
-
-    async function syncAllDossiersFromSupabase() {
-      const cfg = getRuntimeConfig();
-      if (!cfg.SUPABASE_URL || !cfg.SUPABASE_ANON_KEY) return;
-      try {
-        const res = await fetch(`${cfg.SUPABASE_URL}/rest/v1/applications?select=*&order=created_at.desc`, {
-          headers: {
-            "apikey": cfg.SUPABASE_ANON_KEY,
-            "Authorization": `Bearer ${cfg.SUPABASE_ANON_KEY}`
-          }
-        });
-        if (res.ok) {
-          const rows = await res.json();
-          if (Array.isArray(rows)) saveLocalDossiers(rows);
-        }
-      } catch (_) {}
-    }
-
-    async function triggerTransactionalEmail(type, record) {
-      const cfg = getRuntimeConfig();
-      if (!cfg.EMAIL_WEBHOOK_URL) return false;
-      try {
-        const res = await fetch(cfg.EMAIL_WEBHOOK_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ type, dossier: record })
-        });
-        return res.ok;
-      } catch (_) {
-        return false;
-      }
-    }
-
-    // =========================================================================
-    // 4. NAVIGATION & CONTRÔLES UI (MENU, TIROIR, GRAND TEXTE)
-    // =========================================================================
-    function navigateTo(sectionId) {
-      document.querySelectorAll(".page-section").forEach(sec => sec.classList.add("hidden"));
-      const target = document.getElementById(`sec-${sectionId}`);
-      if (target) target.classList.remove("hidden");
-
-      document.querySelectorAll(".nav-btn").forEach(btn => {
-        btn.classList.toggle("active", btn.getAttribute("data-nav") === sectionId);
-      });
-      closeDrawer();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    function openDrawer() {
-      const drawer = document.getElementById("mobileDrawer");
-      const backdrop = document.getElementById("drawerBackdrop");
-      const btn = document.getElementById("menuToggleBtn");
-      drawer.classList.remove("hidden", "pointer-events-none");
-      backdrop.classList.remove("hidden", "pointer-events-none");
-      btn.setAttribute("aria-expanded", "true");
-    }
-
-    function closeDrawer() {
-      const drawer = document.getElementById("mobileDrawer");
-      const backdrop = document.getElementById("drawerBackdrop");
-      const btn = document.getElementById("menuToggleBtn");
-      drawer.classList.add("hidden", "pointer-events-none");
-      backdrop.classList.add("hidden", "pointer-events-none");
-      btn.setAttribute("aria-expanded", "false");
-    }
-
-    function toggleDrawer() {
-      const drawer = document.getElementById("mobileDrawer");
-      if (drawer.classList.contains("hidden")) openDrawer();
-      else closeDrawer();
-    }
-
-    // =========================================================================
-    // 5. RENDU DU CATALOGUE DE CHATONS
-    // =========================================================================
-    let activeFilter = "all";
-
-    function renderInventory() {
-      const grid = document.getElementById("kittenGrid");
-      const list = activeFilter === "all" ? KITTENS : KITTENS.filter(k => k.status === activeFilter);
-
-      grid.innerHTML = list.map(k => {
-        const deposit = computeDeposit(k.price);
-        if (k.status === "adopted") {
-          return `
-            <article class="bg-white border border-[#E6DFD5] rounded-2xl overflow-hidden flex flex-col opacity-90">
-              <div class="relative aspect-[4/3] bg-stone-100">
-                <img src="${k.img}" alt="${k.name}" class="w-full h-full object-cover grayscale-[35%]" loading="lazy" />
-                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-stone-800 text-white text-xs font-bold">Adopté</span>
-              </div>
-              <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
-                <div>
-                  <div class="flex items-baseline justify-between gap-2">
-                    <h3 class="text-2xl font-bold">${k.name}</h3>
-                    <span class="text-xs font-mono text-[#57534E]">${k.id}</span>
-                  </div>
-                  <p class="text-sm font-medium text-[#9A5B25]">${k.breed} &bull; ${k.sex} &bull; ${k.age}</p>
-                  <p class="text-sm text-[#57534E] mt-2">${k.temperament}</p>
-                </div>
-                <div class="space-y-2 pt-2 border-t border-[#E6DFD5]">
-                  <div class="flex justify-between text-xs text-[#57534E]">
-                    <span>Clôture de la fiche</span>
-                    <span>${k.progress || 80}%</span>
-                  </div>
-                  <div class="w-full h-2 bg-stone-200 rounded-full overflow-hidden">
-                    <div class="h-full bg-stone-600" style="width:${k.progress || 80}%"></div>
-                  </div>
-                  <button type="button" disabled class="w-full py-2.5 rounded-xl bg-stone-200 text-stone-500 text-sm font-semibold cursor-not-allowed">
-                    Déjà adopté
-                  </button>
-                </div>
-              </div>
-            </article>
-          `;
-        }
-
-        if (k.status === "pending") {
-          return `
-            <article class="bg-white border border-[#E6DFD5] rounded-2xl overflow-hidden flex flex-col">
-              <div class="relative aspect-[4/3] bg-stone-100">
-                <img src="${k.img}" alt="${k.name}" class="w-full h-full object-cover" loading="lazy" />
-                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-amber-100 text-amber-900 border border-amber-300 text-xs font-bold">Prochainement</span>
-              </div>
-              <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
-                <div>
-                  <div class="flex items-baseline justify-between gap-2">
-                    <h3 class="text-2xl font-bold">${k.name}</h3>
-                    <span class="text-xs font-mono text-[#57534E]">${k.id}</span>
-                  </div>
-                  <p class="text-sm font-medium text-[#9A5B25]">${k.breed} &bull; ${k.sex} &bull; ${k.age}</p>
-                  <p class="text-sm text-[#57534E] mt-2">${k.temperament}</p>
-                </div>
-                <div class="pt-3 border-t border-[#E6DFD5] space-y-2">
-                  <p class="text-sm font-bold">${k.price} € <span class="text-xs font-normal text-[#57534E]">(Acompte : ${deposit} €)</span></p>
-                  <button type="button" data-apply-kitten="${k.id}" class="w-full py-2.5 rounded-xl border border-[#231F20] text-[#231F20] text-sm font-semibold hover:bg-stone-100">
-                    Pré-réserver ce chaton
-                  </button>
-                </div>
-              </div>
-            </article>
-          `;
-        }
-
-        return `
-          <article class="bg-white border border-[#E6DFD5] rounded-2xl overflow-hidden flex flex-col">
-            <div class="relative aspect-[4/3] bg-stone-100">
-              <img src="${k.img}" alt="${k.name}" class="w-full h-full object-cover" loading="lazy" />
-              <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300 text-xs font-bold">Disponible</span>
-            </div>
-            <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
-              <div>
-                <div class="flex items-baseline justify-between gap-2">
-                  <h3 class="text-2xl font-bold">${k.name}</h3>
-                  <span class="text-xs font-mono text-[#57534E]">${k.id}</span>
-                </div>
-                <p class="text-sm font-medium text-[#9A5B25]">${k.breed} &bull; ${k.sex} &bull; ${k.age}</p>
-                <p class="text-sm text-[#57534E] mt-2">${k.temperament}</p>
-              </div>
-              <div class="pt-3 border-t border-[#E6DFD5] space-y-2">
-                <div class="flex items-baseline justify-between">
-                  <span class="text-lg font-bold">${k.price} €</span>
-                  <span class="text-xs text-[#57534E]">Acompte : <strong>${deposit} €</strong></span>
-                </div>
-                <button type="button" data-apply-kitten="${k.id}" class="w-full py-2.5 rounded-xl bg-[#231F20] text-white text-sm font-semibold hover:bg-stone-800">
-                  Postuler pour ce chaton
-                </button>
-              </div>
-            </div>
-          </article>
-        `;
-      }).join("");
-    }
-
-    function selectKittenForApplication(kittenId) {
-      const k = KITTENS.find(item => item.id === kittenId) || KITTENS[0];
-      const deposit = computeDeposit(k.price);
-      document.getElementById("appKittenId").value = k.id;
-      document.getElementById("selectedKittenLabel").textContent = `${k.name} (${k.breed} — ${k.id})`;
-      document.getElementById("selectedKittenPriceNote").textContent = `Tarif total : ${k.price} € • Un acompte de ${deposit} € sera demandé après approbation pour confirmer la réservation.`;
-      navigateTo("application");
-    }
-
-    // =========================================================================
-    // 6. SOUMISSION DE CANDIDATURE & E-MAIL DE BIENVENUE #1
-    // =========================================================================
-    async function handleApplicationSubmit(e) {
-      e.preventDefault();
-      const chosenId = document.getElementById("appKittenId").value || KITTENS[0].id;
-      const k = KITTENS.find(item => item.id === chosenId) || KITTENS[0];
-      const deposit = computeDeposit(k.price);
-      const balance = k.price - deposit;
-      const trackingId = "LPF-" + Math.floor(1000 + Math.random() * 9000);
-
-      const firstName = document.getElementById("appFirstName").value.trim();
-      const lastName = document.getElementById("appLastName").value.trim();
-      const email = document.getElementById("appEmail").value.trim();
-      const phone = document.getElementById("appPhone").value.trim();
-      const address = document.getElementById("appAddress").value.trim();
-      const housingType = document.getElementById("appHousingType").value;
-      const indoorOutdoor = document.getElementById("appIndoorOutdoor").value;
-      const children = document.getElementById("appChildren").value;
-      const otherPets = document.getElementById("appOtherPets").value;
-      const deliveryMode = document.getElementById("appDeliveryMode").value;
-      const paymentMethod = document.getElementById("appPaymentMethod").value;
-      const notes = document.getElementById("appNotes").value.trim();
-
-      const scheduledDate = new Date(Date.now() + 7 * 86400000).toLocaleDateString("fr-FR", {
-        weekday: "long", day: "numeric", month: "long", year: "numeric"
-      });
-
-      const dossier = {
-        tracking_id: trackingId,
-        kitten_id: k.id,
-        kitten_name: `${k.name} (${k.breed})`,
-        first_name: firstName,
-        last_name: lastName,
-        email,
-        phone,
-        address,
-        housing_type: housingType,
-        indoor_outdoor: indoorOutdoor,
-        children,
-        other_pets: otherPets,
-        delivery_mode: deliveryMode,
-        payment_method: paymentMethod,
-        notes,
-        total_price: k.price,
-        deposit_amount: deposit,
-        balance_amount: balance,
-        delivery_date: scheduledDate,
-        approved: false,
-        confirmed: false,
-        paid: false,
-        created_at: new Date().toISOString()
-      };
-
-      const existing = getLocalDossiers();
-      existing.unshift(dossier);
-      saveLocalDossiers(existing);
-
-      await insertApplicationInSupabase(dossier);
-      await triggerTransactionalEmail("welcome_email_1", dossier);
-
-      document.getElementById("generatedTrackingId").textContent = trackingId;
-      document.getElementById("welcomeEmailPreview").textContent =
-        `Objet : Bienvenue à L'élevage des petits félins — Dossier ${trackingId}\n` +
-        `Bonjour ${firstName} ${lastName},\n` +
-        `Nous avons bien reçu votre candidature pour ${k.name} (${k.breed}). Votre logement (${housingType}, ${indoorOutdoor}) est en cours d'étude. Vous recevrez un second e-mail dès l'approbation de votre dossier.`;
-
-      const successBox = document.getElementById("applicationSuccessBox");
-      successBox.classList.remove("hidden");
-      document.getElementById("goToMyTrackingBtn").onclick = () => {
-        document.getElementById("trackingInput").value = trackingId;
-        navigateTo("tracking");
-        lookupTrackingDossier(trackingId);
-      };
-    }
-
-    // =========================================================================
-    // 7. SUIVI DE DOSSIER & LOGIQUE CONFIRMÉ / PAYÉ
-    // =========================================================================
-    async function lookupTrackingDossier(rawId) {
-      const id = (rawId || "").trim().toUpperCase();
-      const errBox = document.getElementById("trackingError");
-      const resBox = document.getElementById("trackingResult");
-      errBox.classList.add("hidden");
-      resBox.classList.add("hidden");
-
-      let dossier = await fetchApplicationFromSupabase(id);
-      if (!dossier) {
-        dossier = getLocalDossiers().find(d => d.tracking_id.toUpperCase() === id) || null;
-      } else {
-        const list = getLocalDossiers().filter(d => d.tracking_id.toUpperCase() !== id);
-        list.unshift(dossier);
-        saveLocalDossiers(list);
-      }
-
-      if (!dossier) {
-        errBox.textContent = `Aucun dossier trouvé pour le numéro "${id}". Vérifiez le code reçu dans votre e-mail de bienvenue.`;
-        errBox.classList.remove("hidden");
-        return;
-      }
-
-      // Fill summary fields
-      document.getElementById("trkAdopter").textContent = `${dossier.first_name} ${dossier.last_name}`;
-      document.getElementById("trkKitten").textContent = dossier.kitten_name;
-      document.getElementById("trkAddress").textContent = dossier.address;
-      document.getElementById("trkPricing").textContent = `${dossier.total_price} € (Acompte : ${dossier.deposit_amount} € • Solde à la livraison : ${dossier.balance_amount} €)`;
-      document.getElementById("trkDeliveryDate").textContent = dossier.delivery_date || "Programmée après confirmation";
-      document.getElementById("trkTransport").textContent = dossier.delivery_mode;
-
-      document.getElementById("openPhoneMapsLink").href = `https://maps.google.com/?q=${encodeURIComponent(dossier.address)}`;
-
-      // Status banner messaging
-      const banner = document.getElementById("trackingStatusBanner");
-      const gateNotice = document.getElementById("documentsGateNotice");
-      const gateText = document.getElementById("documentsGateText");
-      const unlockedSec = document.getElementById("unlockedDocumentsSection");
-
-      if (dossier.confirmed && dossier.paid) {
-        banner.className = "p-5 rounded-xl border bg-emerald-50 border-emerald-300 text-emerald-950 space-y-1";
-        banner.innerHTML = `
-          <p class="font-bold text-base">Dossier confirmé &amp; acompte réglé — Livraison programmée</p>
-          <p class="text-sm">Tout est prêt pour l'arrivée de <strong>${dossier.kitten_name}</strong> le <strong>${dossier.delivery_date}</strong>. Vos documents officiels sont débloqués ci-dessous.</p>
-        `;
-        gateNotice.classList.add("hidden");
-        unlockedSec.classList.remove("hidden");
-        populateReceiptAndCertificates(dossier);
-      } else if (dossier.confirmed && !dossier.paid) {
-        banner.className = "p-5 rounded-xl border bg-amber-50 border-amber-300 text-amber-950 space-y-1";
-        banner.innerHTML = `
-          <p class="font-bold text-base">Dossier confirmé — Vos documents sont prêts</p>
-          <p class="text-sm">Votre Bon de livraison, votre Certificat d'adoption et votre Livret d'accueil sont finalisés et prêts pour la date du <strong>${dossier.delivery_date}</strong>.</p>
-        `;
-        gateNotice.classList.remove("hidden");
-        gateText.textContent = `Vos documents sont prêts dans notre base de données. Pour ouvrir et télécharger votre Bon de livraison, le Livret d'accueil et le Certificat, veuillez régler l'acompte de ${dossier.deposit_amount} €.`;
-        unlockedSec.classList.add("hidden");
-      } else if (dossier.approved) {
-        banner.className = "p-5 rounded-xl border bg-blue-50 border-blue-200 text-blue-950 space-y-1";
-        banner.innerHTML = `
-          <p class="font-bold text-base">Candidature approuvée — Préparation en cours</p>
-          <p class="text-sm">Votre foyer a été validé pour <strong>${dossier.kitten_name}</strong>. Un e-mail de confirmation vous a été adressé avec les modalités d'acompte (${dossier.deposit_amount} €).</p>
-        `;
-        gateNotice.classList.remove("hidden");
-        gateText.textContent = `Dès confirmation de votre acompte (${dossier.deposit_amount} €), le Bon de livraison, le Certificat et le Livret d'accueil seront débloqués ici.`;
-        unlockedSec.classList.add("hidden");
-      } else {
-        banner.className = "p-5 rounded-xl border bg-stone-100 border-stone-300 text-stone-900 space-y-1";
-        banner.innerHTML = `
-          <p class="font-bold text-base">Candidature reçue — En cours d'étude</p>
-          <p class="text-sm">Notre équipe étudie vos réponses concernant votre logement (${dossier.housing_type}) avant de vous envoyer l'e-mail d'approbation.</p>
-        `;
-        gateNotice.classList.remove("hidden");
-        gateText.textContent = `Les documents officiels seront accessibles dès que votre candidature sera approuvée, confirmée et que l'acompte aura été réglé.`;
-        unlockedSec.classList.add("hidden");
-      }
-
-      resBox.classList.remove("hidden");
-    }
-
-    function populateReceiptAndCertificates(d) {
-      document.getElementById("rcptRef").textContent = `DOSSIER N° ${d.tracking_id}`;
-      document.getElementById("rcptClient").textContent = `${d.first_name} ${d.last_name}`;
-      document.getElementById("rcptPhone").textContent = d.phone;
-      document.getElementById("rcptAddress").textContent = d.address;
-      document.getElementById("rcptKitten").textContent = d.kitten_name;
-      document.getElementById("rcptDate").textContent = d.delivery_date;
-      document.getElementById("rcptPayMethod").textContent = d.payment_method;
-      document.getElementById("rcptTotal").textContent = `${d.total_price} €`;
-      document.getElementById("rcptDeposit").textContent = `${d.deposit_amount} €`;
-      document.getElementById("rcptBalance").textContent = `${d.balance_amount} €`;
-
-      document.getElementById("certBodyText").textContent =
-        `Par la présente, L'élevage des petits félins certifie la réservation officielle de ${d.kitten_name} au profit de ${d.first_name} ${d.last_name} (${d.address}), dossier ${d.tracking_id}. Livraison prévue le ${d.delivery_date}.`;
-    }
-
-    // =========================================================================
-    // 8. ADMINISTRATION ÉLEVAGE (APPROUVÉ / CONFIRMÉ / PAYÉ)
-    // =========================================================================
-    function openAdminModal() {
-      const cfg = getRuntimeConfig();
-      document.getElementById("cfgSupabaseUrl").value = cfg.SUPABASE_URL;
-      document.getElementById("cfgSupabaseKey").value = cfg.SUPABASE_ANON_KEY;
-      document.getElementById("cfgEmailWebhook").value = cfg.EMAIL_WEBHOOK_URL;
-      document.getElementById("supabaseStatusText").textContent =
-        cfg.SUPABASE_URL && cfg.SUPABASE_ANON_KEY ? "Connecté à Supabase" : "Mode stockage local navigateur";
-
-      renderAdminDossiersList();
-      const modal = document.getElementById("adminModal");
-      modal.classList.remove("hidden", "pointer-events-none");
-    }
-
-    function closeAdminModal() {
-      const modal = document.getElementById("adminModal");
-      modal.classList.add("hidden", "pointer-events-none");
-    }
-
-    function renderAdminDossiersList() {
-      const container = document.getElementById("adminDossiersList");
-      const list = getLocalDossiers();
-      if (!list.length) {
-        container.innerHTML = `<p class="text-xs text-[#57534E] p-3 bg-stone-50 rounded-lg">Aucun dossier enregistré pour le moment.</p>`;
-        return;
-      }
-      container.innerHTML = list.map(d => `
-        <div class="p-4 rounded-xl border border-[#E6DFD5] bg-[#FAF8F5] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div>
-            <p class="font-bold">${d.tracking_id} — ${d.first_name} ${d.last_name}</p>
-            <p class="text-xs text-[#57534E]">${d.kitten_name} &bull; ${d.email} &bull; Acompte : ${d.deposit_amount} €</p>
-            <p class="text-xs mt-1">
-              Statut :
-              <span class="font-semibold">${d.approved ? "Approuvé" : "En attente"}</span> &bull;
-              <span class="font-semibold">${d.confirmed ? "Confirmé" : "Non confirmé"}</span> &bull;
-              <span class="font-semibold">${d.paid ? "Payé" : "Acompte dû"}</span>
-            </p>
-          </div>
-          <div class="flex flex-wrap gap-1.5">
-            <button type="button" data-admin-action="approve" data-id="${d.tracking_id}" class="px-2.5 py-1.5 rounded-lg bg-blue-700 text-white text-xs font-semibold hover:bg-blue-800">
-              Approuver + E-mail #2
-            </button>
-            <button type="button" data-admin-action="confirm" data-id="${d.tracking_id}" class="px-2.5 py-1.5 rounded-lg bg-amber-700 text-white text-xs font-semibold hover:bg-amber-800">
-              Marquer Confirmé
-            </button>
-            <button type="button" data-admin-action="paid" data-id="${d.tracking_id}" class="px-2.5 py-1.5 rounded-lg bg-emerald-700 text-white text-xs font-semibold hover:bg-emerald-800">
-              Marquer Payé
-            </button>
-          </div>
-        </div>
-      `).join("");
-    }
-
-    async function handleAdminDossierAction(action, trackingId) {
-      const list = getLocalDossiers();
-      const idx = list.findIndex(d => d.tracking_id === trackingId);
-      if (idx === -1) return;
-
-      const patch = {};
-      if (action === "approve") {
-        patch.approved = true;
-      } else if (action === "confirm") {
-        patch.approved = true;
-        patch.confirmed = true;
-      } else if (action === "paid") {
-        patch.approved = true;
-        patch.confirmed = true;
-        patch.paid = true;
-      }
-
-      list[idx] = { ...list[idx], ...patch };
-      saveLocalDossiers(list);
-      await updateApplicationInSupabase(trackingId, patch);
-
-      if (action === "approve") {
-        await triggerTransactionalEmail("second_email_approval", list[idx]);
-      }
-
-      renderAdminDossiersList();
-      if (document.getElementById("trackingInput").value.trim().toUpperCase() === trackingId) {
-        lookupTrackingDossier(trackingId);
-      }
-    }
-
-    // =========================================================================
-    // 9. NOTIFICATIONS LATÉRALES DISCRÈTES (ACTIVITÉ EN DIRECT)
-    // =========================================================================
-    const ACTIVITY_MESSAGES = [
-      "Famille Laurent (Lyon) vient de réserver le chaton Céleste (Ragdoll).",
-      "Nouvelle candidature validée pour Milo (Maine Coon) à Bordeaux.",
-      "Gaspard (Chartreux) a rejoint sa famille à Nantes.",
-      "Acompte confirmé pour le chaton Ambre (Sibérien) — livraison programmée.",
-      "Louna (Sacré de Birmanie) a bien été remise à sa famille à Toulouse."
-    ];
-    let activityIndex = 0;
-
-    function startActivityToasts() {
-      const box = document.getElementById("liveActivityToast");
-      const text = document.getElementById("liveActivityText");
-      let dismissed = false;
-
-      document.getElementById("dismissToastBtn").addEventListener("click", () => {
-        dismissed = true;
-        box.classList.add("hidden");
-      });
-
-      function showNext() {
-        if (dismissed) return;
-        text.textContent = ACTIVITY_MESSAGES[activityIndex % ACTIVITY_MESSAGES.length];
-        activityIndex++;
-        box.classList.remove("hidden");
-        setTimeout(() => {
-          box.classList.add("hidden");
-        }, 7000);
-      }
-
-      setTimeout(showNext, 5000);
-      setInterval(showNext, 26000);
-    }
-
-    // =========================================================================
-    // 10. INITIALISATION & DÉLÉGATION D'ÉVÉNEMENTS
-    // =========================================================================
-    document.addEventListener("DOMContentLoaded", () => {
-      renderInventory();
-      syncAllDossiersFromSupabase();
-      startActivityToasts();
-
-      document.getElementById("menuToggleBtn").addEventListener("click", toggleDrawer);
-      document.getElementById("drawerCloseBtn").addEventListener("click", closeDrawer);
-      document.getElementById("drawerBackdrop").addEventListener("click", closeDrawer);
-
-      document.getElementById("textSizeToggle").addEventListener("click", (e) => {
-        const isLarge = document.documentElement.classList.toggle("large-text");
-        e.currentTarget.textContent = isLarge ? "Texte normal" : "Grand texte";
-      });
-
-      document.getElementById("openAdminFromDrawer").addEventListener("click", () => { closeDrawer(); openAdminModal(); });
-      document.getElementById("openAdminFromTracking").addEventListener("click", openAdminModal);
-      document.getElementById("openAdminFromFooter").addEventListener("click", openAdminModal);
-      document.getElementById("closeAdminModalBtn").addEventListener("click", closeAdminModal);
-
-      document.getElementById("supabaseConfigForm").addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const cfg = {
-          SUPABASE_URL: document.getElementById("cfgSupabaseUrl").value.trim(),
-          SUPABASE_ANON_KEY: document.getElementById("cfgSupabaseKey").value.trim(),
-          EMAIL_WEBHOOK_URL: document.getElementById("cfgEmailWebhook").value.trim() || "/api/send-email"
+      function getConfig() {
+        let saved = {};
+        try { saved = JSON.parse(localStorage.getItem(CONFIG_KEY) || "{}"); } catch (_) {}
+        return {
+          url: (saved.url || window.APP_CONFIG?.SUPABASE_URL || "").trim().replace(/\/$/, ""),
+          key: (saved.key || window.APP_CONFIG?.SUPABASE_ANON_KEY || "").trim(),
+          emailUrl: (saved.emailUrl || window.APP_CONFIG?.EMAIL_WEBHOOK_URL || "").trim()
         };
-        localStorage.setItem(STORAGE_KEY_CFG, JSON.stringify(cfg));
-        await syncAllDossiersFromSupabase();
-        renderAdminDossiersList();
-        document.getElementById("supabaseStatusText").textContent = "Configuration enregistrée et synchronisée.";
-      });
+      }
 
-      document.getElementById("applicationForm").addEventListener("submit", handleApplicationSubmit);
+      function loadDossiers() {
+        try { return JSON.parse(localStorage.getItem(DOSSIERS_KEY) || "[]"); } catch (_) { return []; }
+      }
 
-      document.getElementById("trackingLookupForm").addEventListener("submit", (e) => {
-        e.preventDefault();
-        lookupTrackingDossier(document.getElementById("trackingInput").value);
-      });
+      function saveDossiers(list) {
+        localStorage.setItem(DOSSIERS_KEY, JSON.stringify(list));
+      }
 
-      document.getElementById("printReceiptBtn").addEventListener("click", () => window.print());
+      function depositOf(price) {
+        return Math.round(price * 0.30);
+      }
 
-      document.getElementById("contactForm").addEventListener("submit", (e) => {
-        e.preventDefault();
-        const name = document.getElementById("cntName").value.trim();
-        const ref = document.getElementById("cntRef").value.trim();
-        const msg = document.getElementById("cntMessage").value.trim();
-        const subject = encodeURIComponent(`Contact L'élevage des petits félins ${ref ? "- " + ref : ""}`);
-        const body = encodeURIComponent(`Nom : ${name}\nDossier : ${ref || "Non précisé"}\n\n${msg}`);
-        window.location.href = `mailto:maisonpourchats@gmail.com?subject=${subject}&body=${body}`;
-      });
-
-      document.getElementById("whatsappDirectBtn").addEventListener("click", () => {
-        const msg = encodeURIComponent("Bonjour L'élevage des petits félins, je souhaite des renseignements sur une adoption.");
-        window.open(`https://wa.me/33748258522?text=${msg}`, "_blank", "noopener,noreferrer");
-      });
-
-      // Global delegated click listener for navigation, filters, kitten apply buttons, and admin buttons
-      document.body.addEventListener("click", (e) => {
-        const navEl = e.target.closest("[data-nav]");
-        if (navEl) {
-          navigateTo(navEl.getAttribute("data-nav"));
-          return;
-        }
-
-        const filterEl = e.target.closest("[data-filter]");
-        if (filterEl) {
-          activeFilter = filterEl.getAttribute("data-filter");
-          document.querySelectorAll(".filter-btn").forEach(b => {
-            const active = b.getAttribute("data-filter") === activeFilter;
-            b.className = active
-              ? "filter-btn px-3.5 py-2 rounded-lg bg-[#231F20] text-white text-xs sm:text-sm font-semibold"
-              : "filter-btn px-3.5 py-2 rounded-lg bg-white border border-[#D6CEC2] text-xs sm:text-sm font-semibold";
+      // Supabase REST helpers
+      async function sbInsert(record) {
+        const cfg = getConfig();
+        if (!cfg.url || !cfg.key) return;
+        try {
+          await fetch(`${cfg.url}/rest/v1/applications`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "apikey": cfg.key,
+              "Authorization": `Bearer ${cfg.key}`,
+              "Prefer": "return=representation"
+            },
+            body: JSON.stringify(record)
           });
-          renderInventory();
+        } catch (_) {}
+      }
+
+      async function sbGetOne(code) {
+        const cfg = getConfig();
+        if (!cfg.url || !cfg.key) return null;
+        try {
+          const res = await fetch(`${cfg.url}/rest/v1/applications?tracking_id=eq.${encodeURIComponent(code)}&select=*`, {
+            headers: {
+              "apikey": cfg.key,
+              "Authorization": `Bearer ${cfg.key}`
+            }
+          });
+          if (!res.ok) return null;
+          const rows = await res.json();
+          return rows && rows.length ? rows[0] : null;
+        } catch (_) {
+          return null;
+        }
+      }
+
+      async function sbPatch(code, patch) {
+        const cfg = getConfig();
+        if (!cfg.url || !cfg.key) return;
+        try {
+          await fetch(`${cfg.url}/rest/v1/applications?tracking_id=eq.${encodeURIComponent(code)}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              "apikey": cfg.key,
+              "Authorization": `Bearer ${cfg.key}`
+            },
+            body: JSON.stringify(patch)
+          });
+        } catch (_) {}
+      }
+
+      async function sbSyncAll() {
+        const cfg = getConfig();
+        if (!cfg.url || !cfg.key) return;
+        try {
+          const res = await fetch(`${cfg.url}/rest/v1/applications?select=*&order=created_at.desc`, {
+            headers: {
+              "apikey": cfg.key,
+              "Authorization": `Bearer ${cfg.key}`
+            }
+          });
+          if (res.ok) {
+            const rows = await res.json();
+            if (Array.isArray(rows)) saveDossiers(rows);
+          }
+        } catch (_) {}
+      }
+
+      async function sendWebhook(type, dossier) {
+        const cfg = getConfig();
+        if (!cfg.emailUrl) return;
+        try {
+          await fetch(cfg.emailUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ type, dossier })
+          });
+        } catch (_) {}
+      }
+
+      // Navigation & Drawer
+      function navigateTo(section) {
+        document.querySelectorAll(".page-section").forEach(el => el.classList.add("hidden"));
+        const target = document.getElementById(`sec-${section}`);
+        if (target) target.classList.remove("hidden");
+        document.querySelectorAll(".nav-btn").forEach(btn => {
+          btn.classList.toggle("active", btn.getAttribute("data-nav") === section);
+        });
+        closeDrawer();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function openDrawer() {
+        document.getElementById("mobileDrawer").classList.remove("hidden", "pointer-events-none");
+        document.getElementById("drawerBackdrop").classList.remove("hidden", "pointer-events-none");
+        document.getElementById("menuToggleBtn").setAttribute("aria-expanded", "true");
+      }
+
+      function closeDrawer() {
+        document.getElementById("mobileDrawer").classList.add("hidden", "pointer-events-none");
+        document.getElementById("drawerBackdrop").classList.add("hidden", "pointer-events-none");
+        document.getElementById("menuToggleBtn").setAttribute("aria-expanded", "false");
+      }
+
+      // Render Inventory
+      function renderKittens() {
+        const grid = document.getElementById("kittenGrid");
+        const items = currentFilter === "all" ? KITTENS : KITTENS.filter(k => k.status === currentFilter);
+
+        grid.innerHTML = items.map(k => {
+          const dep = depositOf(k.price);
+          if (k.status === "adopted") {
+            return `
+              <article class="kitten-card">
+                <div class="kitten-img-box">
+                  <img src="${k.img}" alt="${k.name}" loading="lazy" />
+                  <span class="badge badge-dark">Adopté</span>
+                </div>
+                <div class="kitten-body">
+                  <div>
+                    <div class="kitten-top">
+                      <h3 style="font-size:1.65rem;">${k.name}</h3>
+                      <span style="font-size:0.78rem;font-family:monospace;color:var(--ink-muted);">${k.id}</span>
+                    </div>
+                    <p class="kitten-meta">${k.breed} &bull; ${k.sex} &bull; ${k.age}</p>
+                    <p class="kitten-desc">${k.desc}</p>
+                  </div>
+                  <div class="kitten-footer">
+                    <div style="display:flex;justify-content:space-between;font-size:0.78rem;color:var(--ink-muted);">
+                      <span>Archivage de la fiche</span>
+                      <span>${k.progress || 80}%</span>
+                    </div>
+                    <div class="progress-track">
+                      <div class="progress-fill" style="width:${k.progress || 80}%;"></div>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-full" disabled>Adopté</button>
+                  </div>
+                </div>
+              </article>
+            `;
+          }
+
+          const badgeHtml = k.status === "pending"
+            ? `<span class="badge badge-amber" style="border:1px solid #FCD34D;">Prochainement</span>`
+            : `<span class="badge badge-green">Disponible</span>`;
+
+          const btnLabel = k.status === "pending" ? "Pré-candidature" : "Postuler pour ce chaton";
+
+          return `
+            <article class="kitten-card">
+              <div class="kitten-img-box">
+                <img src="${k.img}" alt="${k.name}" loading="lazy" />
+                ${badgeHtml}
+              </div>
+              <div class="kitten-body">
+                <div>
+                  <div class="kitten-top">
+                    <h3 style="font-size:1.65rem;">${k.name}</h3>
+                    <span style="font-size:0.78rem;font-family:monospace;color:var(--ink-muted);">${k.id}</span>
+                  </div>
+                  <p class="kitten-meta">${k.breed} &bull; ${k.sex} &bull; ${k.age}</p>
+                  <p class="kitten-desc">${k.desc}</p>
+                </div>
+                <div class="kitten-footer">
+                  <div class="price-row">
+                    <strong style="font-size:1.15rem;">${k.price} €</strong>
+                    <span style="font-size:0.8rem;color:var(--ink-muted);">Acompte : <strong>${dep} €</strong></span>
+                  </div>
+                  <button type="button" class="btn btn-primary btn-full" data-select-kitten="${k.id}">${btnLabel}</button>
+                </div>
+              </div>
+            </article>
+          `;
+        }).join("");
+      }
+
+      function selectKitten(id) {
+        const k = KITTENS.find(item => item.id === id) || KITTENS[0];
+        const dep = depositOf(k.price);
+        document.getElementById("appKittenId").value = k.id;
+        document.getElementById("selectedKittenTitle").textContent = `${k.name} (${k.breed} — ${k.id})`;
+        document.getElementById("selectedKittenSub").textContent = `Prix total : ${k.price} € • Acompte à prévoir après approbation : ${dep} €`;
+        navigateTo("application");
+      }
+
+      // Application Form
+      async function onApplicationSubmit(e) {
+        e.preventDefault();
+        const k = KITTENS.find(item => item.id === document.getElementById("appKittenId").value) || KITTENS[0];
+        const dep = depositOf(k.price);
+        const bal = k.price - dep;
+        const code = "LPF-" + Math.floor(1000 + Math.random() * 9000);
+        const dateStr = new Date(Date.now() + 7 * 86400000).toLocaleDateString("fr-FR", {
+          weekday: "long", day: "numeric", month: "long", year: "numeric"
+        });
+
+        const dossier = {
+          tracking_id: code,
+          kitten_id: k.id,
+          kitten_name: `${k.name} (${k.breed})`,
+          first_name: document.getElementById("appFirstName").value.trim(),
+          last_name: document.getElementById("appLastName").value.trim(),
+          email: document.getElementById("appEmail").value.trim(),
+          phone: document.getElementById("appPhone").value.trim(),
+          address: document.getElementById("appAddress").value.trim(),
+          housing_type: document.getElementById("appHousingType").value,
+          lifestyle: document.getElementById("appLifestyle").value,
+          kids: document.getElementById("appKids").value,
+          other_pets: document.getElementById("appOtherPets").value,
+          delivery_mode: document.getElementById("appDeliveryMode").value,
+          payment_method: document.getElementById("appPaymentMethod").value,
+          notes: document.getElementById("appNotes").value.trim(),
+          total_price: k.price,
+          deposit_amount: dep,
+          balance_amount: bal,
+          delivery_date: dateStr,
+          approved: false,
+          confirmed: false,
+          paid: false,
+          created_at: new Date().toISOString()
+        };
+
+        const list = loadDossiers();
+        list.unshift(dossier);
+        saveDossiers(list);
+
+        await sbInsert(dossier);
+        await sendWebhook("welcome_email_1", dossier);
+
+        document.getElementById("generatedCode").textContent = code;
+        document.getElementById("welcomeSummary").textContent =
+          `E-mail de bienvenue envoyé à ${dossier.email}\n` +
+          `Candidat : ${dossier.first_name} ${dossier.last_name}\n` +
+          `Foyer : ${dossier.housing_type} (${dossier.lifestyle}) • ${dossier.kids} • ${dossier.other_pets}\n` +
+          `Chaton : ${dossier.kitten_name}`;
+        document.getElementById("appSuccessBox").classList.remove("hidden");
+
+        document.getElementById("openTrackingFromSuccessBtn").onclick = () => {
+          document.getElementById("trackingCodeInput").value = code;
+          navigateTo("tracking");
+          lookupDossier(code);
+        };
+      }
+
+      // Tracking Lookup
+      async function lookupDossier(rawCode) {
+        const code = (rawCode || "").trim().toUpperCase();
+        const errBox = document.getElementById("trackingError");
+        const resBox = document.getElementById("trackingResult");
+        errBox.classList.add("hidden");
+        resBox.classList.add("hidden");
+
+        let d = await sbGetOne(code);
+        if (!d) {
+          d = loadDossiers().find(item => item.tracking_id.toUpperCase() === code) || null;
+        } else {
+          const updated = loadDossiers().filter(item => item.tracking_id.toUpperCase() !== code);
+          updated.unshift(d);
+          saveDossiers(updated);
+        }
+
+        if (!d) {
+          errBox.textContent = `Aucun dossier trouvé pour le numéro "${code}".`;
+          errBox.classList.remove("hidden");
           return;
         }
 
-        const applyEl = e.target.closest("[data-apply-kitten]");
-        if (applyEl) {
-          selectKittenForApplication(applyEl.getAttribute("data-apply-kitten"));
-          return;
+        document.getElementById("trkClient").textContent = `${d.first_name} ${d.last_name}`;
+        document.getElementById("trkKitten").textContent = d.kitten_name;
+        document.getElementById("trkAddress").textContent = d.address;
+        document.getElementById("trkAmounts").textContent = `${d.total_price} € (Acompte : ${d.deposit_amount} € • Solde à la livraison : ${d.balance_amount} €)`;
+        document.getElementById("trkDate").textContent = d.delivery_date;
+        document.getElementById("trkMode").textContent = d.delivery_mode;
+        document.getElementById("mapsAppLink").href = `https://maps.google.com/?q=${encodeURIComponent(d.address)}`;
+
+        const banner = document.getElementById("trackingBanner");
+        const gateBox = document.getElementById("gateBox");
+        const gateMsg = document.getElementById("gateMessage");
+        const unlocked = document.getElementById("unlockedDocs");
+
+        if (d.confirmed && d.paid) {
+          banner.className = "alert-success";
+          banner.innerHTML = `<strong>Dossier confirmé &amp; acompte réglé</strong><p style="font-size:0.88rem;margin-top:4px;">Votre livraison est programmée pour le <strong>${d.delivery_date}</strong>. Vos documents sont disponibles ci-dessous.</p>`;
+          gateBox.classList.add("hidden");
+          unlocked.classList.remove("hidden");
+
+          document.getElementById("rcptId").textContent = `N° ${d.tracking_id}`;
+          document.getElementById("rcptName").textContent = `${d.first_name} ${d.last_name}`;
+          document.getElementById("rcptPhone").textContent = d.phone;
+          document.getElementById("rcptAddr").textContent = d.address;
+          document.getElementById("rcptKitten").textContent = d.kitten_name;
+          document.getElementById("rcptDate").textContent = d.delivery_date;
+          document.getElementById("rcptDeliveryMode").textContent = d.delivery_mode;
+          document.getElementById("rcptPayMode").textContent = d.payment_method;
+          document.getElementById("rcptTotal").textContent = `${d.total_price} €`;
+          document.getElementById("rcptDeposit").textContent = `${d.deposit_amount} €`;
+          document.getElementById("rcptBalance").textContent = `${d.balance_amount} €`;
+          document.getElementById("certText").textContent =
+            `L'élevage des petits félins certifie la réservation de ${d.kitten_name} pour ${d.first_name} ${d.last_name} (${d.address}), dossier ${d.tracking_id}. Livraison prévue le ${d.delivery_date}.`;
+        } else if (d.confirmed && !d.paid) {
+          banner.className = "alert-warn";
+          banner.innerHTML = `<strong>Dossier confirmé — Documents prêts</strong><p style="font-size:0.88rem;margin-top:4px;">Votre Bon de livraison, votre Certificat et votre Livret d'accueil sont prêts pour la date du <strong>${d.delivery_date}</strong>.</p>`;
+          gateBox.classList.remove("hidden");
+          gateMsg.textContent = `Vos documents sont prêts. Pour les ouvrir ou les télécharger, le règlement de l'acompte (${d.deposit_amount} €) est requis.`;
+          unlocked.classList.add("hidden");
+        } else if (d.approved) {
+          banner.className = "alert-warn";
+          banner.innerHTML = `<strong>Candidature approuvée</strong><p style="font-size:0.88rem;margin-top:4px;">Votre candidature pour <strong>${d.kitten_name}</strong> a été approuvée et le suivi de votre dossier est en cours.</p>`;
+          gateBox.classList.remove("hidden");
+          gateMsg.textContent = `Dès confirmation et règlement de l'acompte (${d.deposit_amount} €), vos documents officiels seront accessibles ici.`;
+          unlocked.classList.add("hidden");
+        } else {
+          banner.className = "alert-warn";
+          banner.innerHTML = `<strong>Candidature en cours d'étude</strong><p style="font-size:0.88rem;margin-top:4px;">Nous vérifions actuellement les informations de votre dossier (${d.tracking_id}).</p>`;
+          gateBox.classList.remove("hidden");
+          gateMsg.textContent = `Vos documents seront accessibles une fois votre dossier approuvé, confirmé et l'acompte réglé.`;
+          unlocked.classList.add("hidden");
         }
 
-        const adminActionEl = e.target.closest("[data-admin-action]");
-        if (adminActionEl) {
-          handleAdminDossierAction(
-            adminActionEl.getAttribute("data-admin-action"),
-            adminActionEl.getAttribute("data-id")
-          );
+        resBox.classList.remove("hidden");
+      }
+
+      // Admin Modal
+      function openAdmin() {
+        const cfg = getConfig();
+        document.getElementById("cfgUrl").value = cfg.url;
+        document.getElementById("cfgKey").value = cfg.key;
+        document.getElementById("cfgEmail").value = cfg.emailUrl;
+        document.getElementById("cfgStatus").textContent = cfg.url && cfg.key ? "Supabase configuré" : "Mode local actif";
+        renderAdminList();
+        document.getElementById("adminModal").classList.remove("hidden", "pointer-events-none");
+      }
+
+      function closeAdmin() {
+        document.getElementById("adminModal").classList.add("hidden", "pointer-events-none");
+      }
+
+      function renderAdminList() {
+        const box = document.getElementById("adminDossiersContainer");
+        const list = loadDossiers();
+        if (!list.length) {
+          box.innerHTML = `<p style="font-size:0.85rem;color:var(--ink-muted);">Aucun dossier enregistré pour le moment.</p>`;
+          return;
         }
+        box.innerHTML = list.map(d => `
+          <div style="border:1px solid var(--border-warm);background:var(--bg-cream);border-radius:var(--radius-md);padding:14px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;">
+            <div>
+              <strong>${d.tracking_id}</strong> — ${d.first_name} ${d.last_name} (${d.kitten_name})
+              <div style="font-size:0.78rem;color:var(--ink-muted);">
+                Approuvé : <strong>${d.approved ? "Oui" : "Non"}</strong> &bull;
+                Confirmé : <strong>${d.confirmed ? "Oui" : "Non"}</strong> &bull;
+                Payé : <strong>${d.paid ? "Oui" : "Non"}</strong>
+              </div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <button type="button" class="btn btn-secondary btn-sm" data-admin-op="approve" data-code="${d.tracking_id}">Approuver (E-mail #2)</button>
+              <button type="button" class="btn btn-amber btn-sm" data-admin-op="confirm" data-code="${d.tracking_id}">Confirmé</button>
+              <button type="button" class="btn btn-sage btn-sm" data-admin-op="paid" data-code="${d.tracking_id}">Payé</button>
+            </div>
+          </div>
+        `).join("");
+      }
+
+      async function runAdminOp(op, code) {
+        const list = loadDossiers();
+        const idx = list.findIndex(item => item.tracking_id === code);
+        if (idx === -1) return;
+
+        const patch = {};
+        if (op === "approve") patch.approved = true;
+        if (op === "confirm") { patch.approved = true; patch.confirmed = true; }
+        if (op === "paid") { patch.approved = true; patch.confirmed = true; patch.paid = true; }
+
+        list[idx] = { ...list[idx], ...patch };
+        saveDossiers(list);
+        await sbPatch(code, patch);
+        if (op === "approve") await sendWebhook("second_email_approval", list[idx]);
+
+        renderAdminList();
+        if (document.getElementById("trackingCodeInput").value.trim().toUpperCase() === code) {
+          lookupDossier(code);
+        }
+      }
+
+      // Sidebar Activity Toast
+      function initToasts() {
+        const msgs = [
+          "Céleste (Ragdoll) vient d'être réservé à Lyon.",
+          "Nouvelle candidature reçue pour Milo (Maine Coon).",
+          "Gaspard (Chartreux) a rejoint sa famille à Nantes.",
+          "Acompte réglé pour le chaton Ambre — livraison planifiée."
+        ];
+        let i = 0;
+        let closed = false;
+        const box = document.getElementById("toastBox");
+        const msgEl = document.getElementById("toastMessage");
+
+        document.getElementById("toastCloseBtn").addEventListener("click", () => {
+          closed = true;
+          box.classList.add("hidden");
+        });
+
+        function show() {
+          if (closed) return;
+          msgEl.textContent = msgs[i % msgs.length];
+          i++;
+          box.classList.remove("hidden");
+          setTimeout(() => box.classList.add("hidden"), 6500);
+        }
+
+        setTimeout(show, 4500);
+        setInterval(show, 25000);
+      }
+
+      // Init
+      document.addEventListener("DOMContentLoaded", () => {
+        renderKittens();
+        sbSyncAll();
+        initToasts();
+
+        document.getElementById("menuToggleBtn").addEventListener("click", () => {
+          const isHidden = document.getElementById("mobileDrawer").classList.contains("hidden");
+          if (isHidden) openDrawer(); else closeDrawer();
+        });
+        document.getElementById("drawerCloseBtn").addEventListener("click", closeDrawer);
+        document.getElementById("drawerBackdrop").addEventListener("click", closeDrawer);
+
+        document.getElementById("textSizeBtn").addEventListener("click", (e) => {
+          const large = document.documentElement.classList.toggle("large-text");
+          e.currentTarget.textContent = large ? "Texte normal" : "Grand texte";
+        });
+
+        document.getElementById("openAdminDrawerBtn").addEventListener("click", () => { closeDrawer(); openAdmin(); });
+        document.getElementById("openAdminTrackingBtn").addEventListener("click", openAdmin);
+        document.getElementById("openAdminFooterBtn").addEventListener("click", openAdmin);
+        document.getElementById("closeAdminBtn").addEventListener("click", closeAdmin);
+
+        document.getElementById("configForm").addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const cfg = {
+            url: document.getElementById("cfgUrl").value.trim(),
+            key: document.getElementById("cfgKey").value.trim(),
+            emailUrl: document.getElementById("cfgEmail").value.trim()
+          };
+          localStorage.setItem(CONFIG_KEY, JSON.stringify(cfg));
+          await sbSyncAll();
+          renderAdminList();
+          document.getElementById("cfgStatus").textContent = "Paramètres enregistrés";
+        });
+
+        document.getElementById("applicationForm").addEventListener("submit", onApplicationSubmit);
+        document.getElementById("trackingForm").addEventListener("submit", (e) => {
+          e.preventDefault();
+          lookupDossier(document.getElementById("trackingCodeInput").value);
+        });
+        document.getElementById("printDocsBtn").addEventListener("click", () => window.print());
+
+        document.getElementById("contactForm").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const name = document.getElementById("cntName").value.trim();
+          const code = document.getElementById("cntCode").value.trim();
+          const msg = document.getElementById("cntMessage").value.trim();
+          window.location.href = `mailto:maisonpourchats@gmail.com?subject=${encodeURIComponent("Message - " + (code || name))}&body=${encodeURIComponent("Nom : " + name + "\nDossier : " + code + "\n\n" + msg)}`;
+        });
+
+        document.getElementById("whatsappBtn").addEventListener("click", () => {
+          window.open("https://wa.me/33748258522?text=" + encodeURIComponent("Bonjour L'élevage des petits félins, je souhaite des informations."), "_blank", "noopener,noreferrer");
+        });
+
+        document.body.addEventListener("click", (e) => {
+          const nav = e.target.closest("[data-nav]");
+          if (nav) { navigateTo(nav.getAttribute("data-nav")); return; }
+
+          const filter = e.target.closest("[data-filter]");
+          if (filter) {
+            currentFilter = filter.getAttribute("data-filter");
+            document.querySelectorAll(".filter-btn").forEach(b => b.classList.toggle("active", b.getAttribute("data-filter") === currentFilter));
+            renderKittens();
+            return;
+          }
+
+          const sel = e.target.closest("[data-select-kitten]");
+          if (sel) { selectKitten(sel.getAttribute("data-select-kitten")); return; }
+
+          const adminOp = e.target.closest("[data-admin-op]");
+          if (adminOp) { runAdminOp(adminOp.getAttribute("data-admin-op"), adminOp.getAttribute("data-code")); }
+        });
       });
-    });
+    })();
   </script>
 </body>
+</html>
 </html>
