@@ -1,3 +1,4 @@
+Here is the complete index.html in a single code block so you can tap the copy button once and paste the whole file directly.
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -47,7 +48,6 @@
     .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
     @media (min-width: 640px) { .container { padding: 0 24px; } }
 
-    /* Header */
     .site-header {
       position: sticky;
       top: 0;
@@ -120,7 +120,6 @@
     .btn-full { width: 100%; }
     .btn:disabled { background: #E5E7EB; color: #6B7280; border-color: #D1D5DB; cursor: not-allowed; }
 
-    /* Drawer */
     .drawer-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.48); z-index: 50; }
     .drawer-panel {
       position: fixed;
@@ -154,7 +153,6 @@
     }
     .drawer-link:hover { background: #F4EFE8; }
 
-    /* Sections & Cards */
     .main-area { padding: 32px 0 64px; }
     @media (min-width: 640px) { .main-area { padding: 48px 0 80px; } }
 
@@ -166,7 +164,6 @@
     }
     @media (min-width: 640px) { .card { padding: 32px; } }
 
-    /* Dark + Pink/Rose Decorated Apply Card */
     .apply-dark-card {
       position: relative;
       background: linear-gradient(160deg, #090D16 0%, #111827 55%, #1F1224 100%);
@@ -245,7 +242,6 @@
     .steps-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 28px; }
     @media (min-width: 768px) { .steps-grid { grid-template-columns: repeat(3, 1fr); } }
 
-    /* Inventory */
     .section-head {
       display: flex;
       flex-direction: column;
@@ -297,7 +293,6 @@
     .progress-track { height: 8px; background: #E5E7EB; border-radius: 999px; overflow: hidden; margin: 6px 0 12px; }
     .progress-fill { height: 100%; background: #52525B; }
 
-    /* Forms & Alerts */
     .narrow-wrap { max-width: 780px; margin: 0 auto; }
     .wide-wrap { max-width: 960px; margin: 0 auto; }
     .form-grid-2 { display: grid; grid-template-columns: 1fr; gap: 16px; }
@@ -321,7 +316,6 @@
     .alert-error { background: #FEF2F2; border: 1px solid #FCA5A5; color: #991B1B; border-radius: var(--radius-md); padding: 14px; margin-top: 12px; font-size: 0.9rem; }
     .alert-code-notice { background: rgba(15, 23, 42, 0.95); border: 1.5px solid #FB7185; color: #FFF1F2; border-radius: var(--radius-md); padding: 18px; margin-top: 20px; }
 
-    /* Tracking & Manual Step Progress */
     .lookup-row { display: flex; flex-direction: column; gap: 10px; }
     @media (min-width: 640px) { .lookup-row { flex-direction: row; } }
     .lookup-row input {
@@ -409,7 +403,6 @@
       margin-top: 16px;
     }
 
-    /* Footer & Modal */
     .site-footer { background: var(--card-white); border-top: 1px solid var(--border-warm); padding: 28px 0; font-size: 0.82rem; color: var(--ink-muted); }
     .footer-inner { display: flex; flex-direction: column; gap: 12px; align-items: center; justify-content: space-between; }
     @media (min-width: 640px) { .footer-inner { flex-direction: row; } }
@@ -426,7 +419,6 @@
 </head>
 <body>
 
-  <!-- HEADER -->
   <header class="site-header">
     <div class="container header-inner">
       <button type="button" class="brand-btn" data-nav="home">
@@ -451,7 +443,6 @@
     </div>
   </header>
 
-  <!-- DRAWER -->
   <div id="drawerBackdrop" class="drawer-backdrop hidden"></div>
   <aside id="mobileDrawer" class="drawer-panel hidden" aria-label="Menu latéral">
     <div>
@@ -478,10 +469,8 @@
     </div>
   </aside>
 
-  <!-- MAIN -->
   <main class="container main-area">
 
-    <!-- 1. ACCUEIL -->
     <section id="sec-home" class="page-section">
       <div class="card hero-grid">
         <div>
@@ -501,7 +490,6 @@
       </div>
     </section>
 
-    <!-- 2. NOS CHATONS -->
     <section id="sec-inventory" class="page-section hidden">
       <div class="section-head">
         <div>
@@ -520,7 +508,6 @@
       <div id="kittenGrid" class="kitten-grid"></div>
     </section>
 
-    <!-- 3. CANDIDATURE (DARK + PINK/ROSE DECORATED FORM) -->
     <section id="sec-application" class="page-section hidden">
       <div class="narrow-wrap apply-dark-card">
         <div style="position:relative;padding-bottom:16px;border-bottom:1px solid rgba(251,113,133,0.3);margin-bottom:20px;">
@@ -656,7 +643,6 @@
       </div>
     </section>
 
-    <!-- 4. SUIVI & DOSSIER -->
     <section id="sec-tracking" class="page-section hidden">
       <div class="wide-wrap card">
         <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--border-warm);margin-bottom:20px;">
@@ -681,7 +667,6 @@
         <div id="trackingResult" class="hidden" style="margin-top:18px;">
           <div id="statusMessageBox" class="alert-warn"></div>
 
-          <!-- Manual Step 1-5 Progress & Document Checklist -->
           <div id="docProgressBox" class="doc-progress-card hidden">
             <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
               <div>
@@ -709,14 +694,12 @@
             <div><span style="color:var(--ink-muted);">Acompte (min. 100 €) :</span> <strong id="trkDeposit"></strong></div>
           </div>
 
-          <!-- Official Receipt when status is paid or delivery -->
           <div id="officialReceiptBox" class="official-box hidden">
             <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;color:var(--accent-sage);">Reçu officiel — L'élevage des petits félins (France)</p>
             <h3 style="font-size:1.7rem;margin-top:4px;">Reçu de paiement &amp; réservation</h3>
             <p id="receiptBody" style="margin-top:10px;font-size:0.92rem;line-height:1.65;"></p>
           </div>
 
-          <!-- Delivery Info when status is delivery -->
           <div id="deliveryInfoBox" class="delivery-box hidden">
             <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;">Informations de livraison — France</p>
             <h3 style="font-size:1.7rem;margin-top:4px;color:#1E3A8A;">Détails d'acheminement</h3>
@@ -726,7 +709,6 @@
       </div>
     </section>
 
-    <!-- 5. PAIEMENT & CONTACT -->
     <section id="sec-contact" class="page-section hidden">
       <div class="wide-wrap steps-grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:0;">
         <div class="card">
@@ -769,7 +751,6 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>&copy; 2026 L'élevage des petits félins &bull; France &bull; Supabase</p>
@@ -783,7 +764,6 @@
     </div>
   </footer>
 
-  <!-- ADMIN MODAL -->
   <div id="adminModal" class="modal-backdrop hidden">
     <div class="modal-card">
       <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid var(--border-warm);">
@@ -813,7 +793,7 @@
       <div style="margin-top:20px;">
         <h3 style="font-size:1.5rem;margin-bottom:6px;">Dossiers — Étapes manuelles (1 à 5) &amp; Statuts</h3>
         <p style="font-size:0.82rem;color:var(--ink-muted);margin-bottom:12px;">
-          Choisissez l'étape manuelle <strong>1, 2, 3, 4 ou 5</strong> selon ce que vous avez traité (0% à 100%), puis passez sur <strong>confirm</strong>, <strong>paid</strong> ou <strong>delivery</strong>.
+          Choisissez l'étape manuelle <strong>1, 2, 3, 4 ou 5</strong> selon ce que vous avez traité (20% à 100%), puis passez sur <strong>confirm</strong>, <strong>paid</strong> ou <strong>delivery</strong>.
         </p>
         <div id="adminDossiersContainer" style="display:flex;flex-direction:column;gap:12px;"></div>
       </div>
@@ -896,7 +876,6 @@
         return stage === "approved" ? 1 : 0;
       }
 
-      // Manual step 1..5 -> exact percentage & document status (no automatic clock)
       function getStepDisplay(stepNum, stage) {
         if (stage === "confirm" || stage === "paid" || stage === "delivery" || stepNum >= 5) {
           return {
@@ -1314,12 +1293,13 @@
         resBox.classList.remove("hidden");
       }
 
-      function openAdmin() {
+      async function openAdmin() {
         const cfg = getConfig();
         document.getElementById("cfgUrl").value = cfg.url;
         document.getElementById("cfgKey").value = cfg.key;
-        renderAdminList();
         document.getElementById("adminModal").classList.remove("hidden");
+        await sbSyncAll();
+        renderAdminList();
       }
 
       function closeAdmin() {
@@ -1503,5 +1483,5 @@
   </script>
 </body>
 </html>
-        { id: "LPF-K27", name
+
 </html>
